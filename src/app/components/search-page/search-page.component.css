@@ -1,0 +1,217 @@
+.SearchContainer {
+  margin-top: 20px;
+  padding-left: 30px;
+  width: 98%;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  background: #F48686;
+  border-radius: 18px;
+  position: relative;
+}
+
+.SearchText {
+  color: white;
+  font-size: 25px;
+  font-family: Kavoon;
+  font-weight: 400;
+  line-height: 12px;
+  word-wrap: break-word;
+  margin-top: 20px;
+}
+
+.Search {
+  position: relative;
+  display: flex;
+}
+
+.SelectorContainer {
+  background-color: white;
+  padding: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 15px;
+  height: 40px;
+  width: fit-content;
+  position: relative;
+  display: flex;
+  border-radius: 18px;
+  align-items: center;
+  text-align: center;
+  font-weight: 800;
+}
+
+button {
+  font-size: large;
+  font-weight: 800;
+  margin-left: 30px;
+  margin-top: 15px;
+  height: 60px;
+  width: 120px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px rgba(221, 143.65, 143.65, 0.20);
+}
+
+button:active {
+  /* press effect */
+  transform: scale(0.98);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+select {
+  margin-right: 20px;
+  margin-left: 15px;
+  border-color: transparent;
+  font-size: medium;
+  font-weight: 800;
+}
+
+.SearchImage {
+  width: 350px;
+  height: 115.65px;
+  mix-blend-mode: screen;
+  position: absolute;
+  right: 30px;
+  bottom: 5px;
+}
+
+.ResultContainer {
+  width: 100%;
+  padding-top: 20px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 80px;
+  display: inline-flex;
+  position: relative;
+}
+
+.CardContainer {
+  padding-bottom: 20px;
+  width: 100%;
+  align-items: center;
+  gap: 5%;
+  display: inline-flex;
+}
+
+.Card {
+  background: white;
+  padding-top: 20px;
+  box-shadow: 0px 4px 60px rgba(0, 52.49, 100.94, 0.25);
+  border-radius: 42px;
+  justify-content: flex-start;
+  flex-direction: column;
+  display: flex;
+  width: 30%;
+  height: 500px;
+}
+
+.PetImage {
+  width: 90%;
+  height: 50%;
+  background: linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%);
+  border-radius: 24px;
+  align-self: center;
+}
+
+.PetName {
+  width: 90%;
+  text-align: left;
+  color: #1E1E1E;
+  font-size: 30px;
+  font-weight: bold;
+  word-wrap: break-word;
+  align-self: center;
+  padding-bottom: 10px;
+}
+
+.PetDetails {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 90%;
+  height: 20px;
+  position: relative;
+  display: flex;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+
+.couple,
+.MapMarker,
+.paw {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  margin-right: 15px;
+}
+
+.Gender,
+.PetType,
+.Location {
+  color: #1E1E1E;
+  font-size: 16px;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.PetType,
+.Location {
+  padding-right: 25%;
+}
+
+.PetDescription {
+  width: 90%;
+  color: #5E5E5E;
+  font-size: 20px;
+  font-weight: 400;
+  word-wrap: break-word;
+  text-align: left;
+  align-self: center;
+  padding-bottom: 10px;
+}
+
+.Requirements {
+  width: 90%;
+  height: 58px;
+  position: relative;
+  align-self: center;
+  align-items: center;
+}
+
+.AgeRequirement,
+.TrackingRequirement,
+.FamilyApprovalRequirement,
+.AgreementRequirement {
+  position: absolute;
+  font-size: 16px;
+  font-weight: 700;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.AgeRequirement {
+  right: 30px;
+  top: 0px;
+  color: #D14747;
+}
+
+.TrackingRequirement {
+  left: 0;
+  top: 37px;
+  color: #DFD2D2;
+}
+
+.FamilyApprovalRequirement {
+  right: 30px;
+  top: 37px;
+  color: #D14747;
+}
+
+.AgreementRequirement {
+  left: 0px;
+  top: 0px;
+  color: #D14747;
+}
