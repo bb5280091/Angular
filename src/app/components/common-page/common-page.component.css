@@ -1,0 +1,24 @@
+.NavBar {
+  background-color: #E79F9F;
+  text-align: center;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.NavText {
+  color: #A52A2A;
+  display: inline-block;
+  /* 水平平行排列 */
+  margin: 0 60px;
+  font-size: larger;
+}
+
+.NavText a {
+  color: #A52A2A;
+  text-decoration: none;
+  /* 移除連結下面的線 */
+}
+
+.NavText :hover {
+  font-weight: bold;
+}

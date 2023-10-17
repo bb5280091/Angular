@@ -1,0 +1,82 @@
+.PageTitle {
+  color: #872222;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 10px;
+  text-align: center;
+}
+
+form {
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.05);
+  width: 50%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin: 10px auto;
+  /* 使用auto水平置中 */
+  text-align: center;
+  background-color: #FBDBDB;
+  border-radius: 15px;
+  font-weight: 700;
+  gap: 15px;
+}
+
+select {
+  margin-right: 20px;
+  margin-left: 15px;
+  width: 250px;
+  height: 40px;
+  font-size: medium;
+  font-weight: 800;
+  border-radius: 5px;
+}
+
+input[type="text"] {
+  width: 250px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+input[type="radio"] {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+}
+
+input[type="checkbox"] {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 10px;
+}
+
+input[type="file"] {
+  margin-left: 70px;
+}
+
+textarea {
+  width: 400px;
+  height: 250px;
+  resize: none;
+  border-radius: 5px;
+  white-space: pre-wrap;
+}
+
+button {
+  width: 100px;
+  height: 100%;
+  padding-left: 34px;
+  padding-right: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #EC729E;
+  border-radius: 5px;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+}

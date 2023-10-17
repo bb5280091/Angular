@@ -1,0 +1,50 @@
+<div class="PageTitle">登記送養</div>
+<div class="FormContainer">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <p>寵物名字</p>
+    <input type="text" formControlName="name" name="name" placeholder="Ex.小米"/>
+    <p>寵物種類</p>
+    <select formControlName="species" name="species" >
+      <option>狗</option>
+      <option>貓</option>
+      <option>鼠</option>
+      <option>兔</option>
+    </select>
+    <p>所在地</p>
+    <select formControlName="city" name="city">
+      <option>基隆市</option>
+      <option>台北市</option>
+      <option>新北市</option>
+      <option>高雄市</option>
+    </select>
+    <p>寵物品種</p>
+    <input type="text" formControlName="type" name="type" placeholder="Ex.比熊" />
+    <p>寵物體型</p>
+    <input type="text" formControlName="size" name="size" placeholder="Ex.大" />
+    <p>寵物毛色</p>
+    <input type="text" formControlName="color" name="color" placeholder="Ex.白色" />
+    <p>寵物年紀</p>
+    <input type="text" formControlName="age" name="age" placeholder="Ex.兩歲五個月" />
+    <div>
+      <input type="radio" value="F" name="sex" formControlName="sex" />母
+      <input type="radio" value="M" name="sex" formControlName="sex" />公
+    </div>
+    <input type="checkbox" formControlName="ligation" value="Y" name="ligation" />是否已結紮
+    <p>更多介紹</p>
+    <textarea formControlName="introduction" name="introduction" class="introduction" cols="30" rows="10"
+      placeholder="請描寫更多信息..."></textarea>
+    <p>動物照片</p>
+    <input type="file" formControlName="photo" name="photo">
+    <!-- 上傳功能 -->
+    <br>
+    <input type="checkbox" formControlName="affidavit" value="Y" name="affidavit" />是否需簽署養切結書
+    <br>
+    <input type="checkbox" formControlName="followUp" value="Y" name="followUp" />是否需接受後續追蹤
+    <br>
+    <input type="checkbox" formControlName="ageLimit" value="Y" name="ageLimit" />是否需年滿20歲
+    <br>
+    <input type="checkbox" formControlName="parentalPermission" value="Y" name="parentalPermission" />是否需家人同意
+    <br>
+    <button type="submit">送出</button>
+  </form>
+</div>

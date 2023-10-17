@@ -1,0 +1,78 @@
+.User {
+  position: relative;
+  display: flex;
+}
+
+.MemberBar {
+  width: 185px;
+  height: 100%;
+  padding-left: 49px;
+  padding-right: 49px;
+  padding-top: 150px;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:70px;
+  color: #872222;
+  font-size: 20px;
+}
+
+.MemberInfoTitle {
+  padding-top: 10px;
+  color: #872222;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.MemberInfo {
+  flex: 1;
+  padding: 20px;
+}
+
+
+input {
+  height: 40px;
+  width: 350px;
+  border-radius: 10px;
+  border: 1px #E9C854 solid;
+}
+
+
+button {
+  width: 150px;
+  height: 40px;
+  position: absolute;
+  background: #FF7575;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin-top: 30px;
+  color: white;
+  border-color: white;
+}
+
+.Line {
+  width: 55%;
+  height: 0px;
+  position: absolute;
+  border: 1px #D24C4C solid;
+}
+
+.ModifyText {
+  color: #E77F7F;
+  font-size: 25px;
+  font-weight: 700;
+  padding-top: 25px;
+}
+
+.NavText a {
+  color: #A52A2A;
+  text-decoration: none;
+}
+
+.NavText :hover {
+  font-weight: bold;
+}
