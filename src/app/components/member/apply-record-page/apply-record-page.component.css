@@ -1,0 +1,51 @@
+.Line {
+  width: 55%;
+  height: 0px;
+  position: absolute;
+  border: 1px #D24C4C solid;
+}
+
+.ApplyRecordTitle {
+  padding-top: 10px;
+  color: #872222;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ApplyRecord {
+  flex: 1;
+  padding: 20px;
+}
+
+.tableTitle {
+  background-color: #FFB9B9;
+  text-align: center;
+  padding: 8px;
+  border-radius: 18px;
+  color: #872222;
+  margin-top: 25px;
+  width: 730px
+}
+
+.tableBody {
+  background-color: white;
+  padding: 5px 8px 5px 8px;
+  text-align: center;
+  border-radius: 18px;
+  color: #872222;
+  font-weight: 500;
+  margin-top: 15px;
+  width: 730px;
+}
+
+
+td,
+th {
+  text-align: center;
+  width:170px;
+}
+
+
+
+

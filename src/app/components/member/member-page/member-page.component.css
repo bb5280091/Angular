@@ -1,0 +1,30 @@
+.User {
+  position: relative;
+  display: flex;
+}
+
+.MemberBar {
+  width: 185px;
+  height: 100%;
+  padding-left: 49px;
+  padding-right: 49px;
+  padding-top: 150px;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:70px;
+  color: #872222;
+  font-size: 20px;
+}
+
+.NavText a {
+  color: #A52A2A;
+  text-decoration: none;
+}
+
+.NavText :hover {
+  font-weight: bold;
+}

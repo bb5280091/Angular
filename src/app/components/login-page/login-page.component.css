@@ -1,0 +1,35 @@
+.loginContainer{
+  background-color:#FDF6D1;
+  margin-top: 30px;
+  margin-left: 25%;
+  width:50%;
+  height: 500px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 60px rgba(0, 52.49, 100.94, 0.25);
+}
+
+.frame{
+  opacity: 80%;
+}
+
+.loginTitle {
+  color: #E77F7F;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+p{
+  color: gray;
+}
+
+button{
+  border-radius: 10px;
+  margin-top: 80px;
+  background-color:rgb(244, 248, 250) ;
+}
+
+.animalFrame{
+  padding-top: 100px;
+  width: 80%;
+}
