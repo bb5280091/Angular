@@ -1,106 +1,62 @@
 <body>
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <div class="SearchContainer">
     <div class="SearchText">進階查詢</div>
-    <!-- 以下用遍歷的 -->
     <div class="Search">
       <div class="SelectorContainer">
         <div>
           <img class="MapMarker" src="assets\images\map-marker.png" />
           <span>所在地</span>
-          <select>
-            <option>全部</option>
-            <option>基隆市</option>
-            <option>台北市</option>
-            <option>新北市</option>
-            <option>高雄市</option>
+          <select formControlName="cityId">
+            <option value=''>全部</option>
+            <option *ngFor="let city of  cityOptions" [value]="city.cityId">{{city.cityName}}</option>
           </select>
         </div>
         <div>
           <img class="paw" src="assets\images\paw.png" />
           <span>寵物類型</span>
-          <select>
-            <option>全部</option>
-            <option>狗</option>
-            <option>貓</option>
-            <option>鼠</option>
-            <option>兔</option>
+          <select formControlName="speciesId">
+            <option value=''>全部</option>
+            <option  *ngFor="let species of  speciesOptions" [value]="species.speciesId">{{species.speciesName}}</option>
           </select>
         </div>
         <div>
           <img class="couple" src="assets\images\couple.png" />
           <span>寵物性別</span>
-          <select>
-            <option>全部</option>
-            <option>公</option>
-            <option>母</option>
+          <select formControlName="sex">
+            <option value=''>全部</option>
+            <option value='M'>公</option>
+            <option value='F'>母</option>
           </select>
         </div>
       </div>
-      <button>查詢</button>
+      <button type="submit">查詢</button>
     </div>
     <img class="SearchImage" src="assets\images\小邊框.png" />
   </div>
   <div class="ResultContainer">
     <!-- 將查詢結果遍歷出來，三個換行 -->
     <div class="CardContainer">
-      <div class="Card">
-        <img class="PetImage" src="assets\images\黃金獵犬.jpg" />
+      <div class="Card" *ngFor="let pet of displayAnimals">
+        <img class="PetImage" src="data:image/png;base64,{{pet.photo}}" />
         <div class="PetDetails">
           <img class="MapMarker" src="assets\images\map-marker.png" />
-          <span class="Location">台中市</span>
+          <span class="Location">{{pet.city}}</span>
           <img class="paw" src="assets\images\paw.png" />
-          <span class="PetType">狗</span>
+          <span class="PetType">{{pet.species}}</span>
           <img class="couple" src="assets\images\couple.png" />
-          <span class="Gender">公</span>
+          <span class="Gender">{{ pet.sex === 'F' ? '母' : pet.sex === 'M' ? '公' : '' }}</span>
         </div>
-        <div class="PetName">阿金</div>
-        <div class="PetDescription">需要大量散步，個性親人活潑</div>
+        <div class="PetName">{{pet.name}}</div>
+        <div class="PetDescription">{{pet.introduction}}</div>
         <div class="Requirements">
-          <div class="TrackingRequirement">需接受後續追蹤</div>
-          <div class="AgeRequirement">需年滿20歲</div>
-          <div class="FamilyApprovalRequirement">需家人同意</div>
-          <div class="AgreementRequirement">需簽署養切結書</div>
-        </div>
-      </div>
-      <div class="Card">
-        <img class="PetImage" src="assets\images\貓貓.jpg" />
-        <div class="PetDetails">
-          <img class="MapMarker" src="assets\images\map-marker.png" />
-          <span class="Location">台南市</span>
-          <img class="paw" src="assets\images\paw.png" />
-          <span class="PetType">貓</span>
-          <img class="couple" src="assets\images\couple.png" />
-          <span class="Gender">母</span>
-        </div>
-        <div class="PetName">小咪</div>
-        <div class="PetDescription">喜歡乾食，不行與其他寵物一起養</div>
-
-        <div class="Requirements">
-          <div class="TrackingRequirement">需接受後續追蹤</div>
-          <div class="AgeRequirement">需年滿20歲</div>
-          <div class="FamilyApprovalRequirement">需家人同意</div>
-          <div class="AgreementRequirement">需簽署養切結書</div>
-        </div>
-      </div>
-      <div class="Card">
-        <img class="PetImage" src="assets\images\狗狗.jpg" />
-        <div class="PetDetails">
-          <img class="MapMarker" src="assets\images\map-marker.png" />
-          <span class="Location">高雄市</span>
-          <img class="paw" src="assets\images\paw.png" />
-          <span class="PetType">狗</span>
-          <img class="couple" src="assets\images\couple.png" />
-          <span class="Gender">母</span>
-        </div>
-        <div class="PetName">格格</div>
-        <div class="PetDescription">天生有疾病，需要定期去醫院檢查</div>
-        <div class="Requirements">
-          <div class="TrackingRequirement">需接受後續追蹤</div>
-          <div class="AgeRequirement">需年滿20歲</div>
-          <div class="FamilyApprovalRequirement">需家人同意</div>
-          <div class="AgreementRequirement">需簽署養切結書</div>
+          <div class="TrackingRequirement"[ngStyle]="{'color': pet.conditionFollowup === 'Y' ? '#D14747' : '#DFD2D2'}">需接受後續追蹤</div>
+          <div class="AgeRequirement"[ngStyle]="{'color': pet.conditionAgeLimit === 'Y' ? '#D14747' : '#DFD2D2'}">需年滿20歲</div>
+          <div class="FamilyApprovalRequirement" [ngStyle]="{'color': pet. conditionParentalPermission === 'Y' ? '#D14747' : '#DFD2D2'}">需家人同意</div>
+          <div class="AgreementRequirement"[ngStyle]="{'color': pet. conditionAffidavit === 'Y' ? '#D14747' : '#DFD2D2'}">需簽署養切結書</div>
         </div>
       </div>
     </div>
   </div>
+</form>
 </body>

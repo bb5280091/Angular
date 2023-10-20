@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonPageComponent } from './components/common-page/common-page.component';
@@ -17,6 +16,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { AdminPageComponent } from './components/admin/admin-page/admin-page.component';
 import { AdminPostPageComponent } from './components/admin/admin-post-page/admin-post-page.component';
 import { AdminMessagePageComponent } from './components/admin/admin-message-page/admin-message-page.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
+
 
 
 
@@ -36,13 +37,14 @@ import { AdminMessagePageComponent } from './components/admin/admin-message-page
     LoginPageComponent,
     AdminPageComponent,
     AdminPostPageComponent,
-    AdminMessagePageComponent
+    AdminMessagePageComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
