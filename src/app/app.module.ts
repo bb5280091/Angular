@@ -17,6 +17,7 @@ import { AdminPageComponent } from './components/admin/admin-page/admin-page.com
 import { AdminPostPageComponent } from './components/admin/admin-post-page/admin-post-page.component';
 import { AdminMessagePageComponent } from './components/admin/admin-message-page/admin-message-page.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { DetailPageComponent } from './components/detail-page/detail-page.component';
 
 
 
@@ -38,7 +39,8 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
     AdminPageComponent,
     AdminPostPageComponent,
     AdminMessagePageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    DetailPageComponent
   ],
   imports: [
     BrowserModule,

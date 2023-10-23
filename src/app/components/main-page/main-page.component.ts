@@ -3,6 +3,7 @@ import { simpleAnimal } from './../../adpotion-model';
 
 import { AdoptionService } from './../../adoption.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -17,23 +18,22 @@ export class MainPageComponent implements OnInit {
    * @memberof MainPageComponent
    */
   displayRankAnimals: simpleAnimal[] = []
-  constructor(private adoptionService: AdoptionService) { }
+  constructor(private adoptionService: AdoptionService, private router: Router) { }
 
   ngOnInit(): void {
     this.adoptionService.onQueryRankCtr().subscribe((res) => {
-      this. displayRankAnimals = res.animal;
+      this.displayRankAnimals = res.animal;
     })
   }
   cardClicked(animalId: number) {
-    this.adoptionService.onAddCtr(animalId).subscribe((res) =>{
-    if (res.statusCode !== '0000') {
-      console.log('err點擊數尚未計算成功')
+    this.adoptionService.onAddCtr(animalId).subscribe((res) => {
+      if (res.statusCode !== '0000') {
+        console.log('err點擊數尚未計算成功')
+      }
+      console.log(res.status)
     }
-  console.log(res.status)
-  }
-
     )
-
+    this.router.navigate(['/detail'],{ queryParams: {animalId:animalId}});
   }
 
 }

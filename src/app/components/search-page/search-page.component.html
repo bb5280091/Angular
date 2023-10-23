@@ -35,9 +35,8 @@
     <img class="SearchImage" src="assets\images\小邊框.png" />
   </div>
   <div class="ResultContainer">
-    <!-- 將查詢結果遍歷出來，三個換行 -->
     <div class="CardContainer">
-      <div class="Card" *ngFor="let pet of displayAnimals">
+      <div class="Card" *ngFor="let pet of displayAnimals" (click)="cardClicked(pet.id)">
         <img class="PetImage" src="data:image/png;base64,{{pet.photo}}" />
         <div class="PetDetails">
           <img class="MapMarker" src="assets\images\map-marker.png" />

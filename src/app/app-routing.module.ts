@@ -13,6 +13,7 @@ import { MemberPageComponent } from './components/member/member-page/member-page
 import { MessagePageComponent } from './components/member/message-page/message-page.component';
 import { PetgivingRecordPageComponent } from './components/member/petgiving-record-page/petgiving-record-page.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { DetailPageComponent } from './components/detail-page/detail-page.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,11 @@ const routes: Routes = [
     path: '',
     component: MainPageComponent
   },
+  {
+    path: 'detail',
+    component: DetailPageComponent
+  }
+  ,
   {
     path: 'search',
     component: SearchPageComponent
@@ -31,7 +37,7 @@ const routes: Routes = [
   {
     path: 'member',
     component: MemberPageComponent,
-    children:[
+    children: [
       {
         path: 'info',
         component: MemberInfoPageComponent
@@ -57,7 +63,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent,
-    children:[
+    children: [
       {
         path: 'post',
         component: AdminPostPageComponent
