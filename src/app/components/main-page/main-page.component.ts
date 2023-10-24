@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdoptService } from 'src/app/service/adopt.service';
 
 @Component({
   selector: 'app-main-page',

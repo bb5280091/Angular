@@ -12,29 +12,68 @@
       </thead>
     </div>
     <tbody>
-      <!-- 要遍歷 -->
-      <div class="tableBody">
-        <tr>
-          <td>1</td>
-          <td>阿金</td>
-          <td>刊登中</td>
-          <td>2023/10/17</td>
-          <td><input type="radio" name="petSelected"></td>
-        </tr>
-      </div>
-      <div class="tableBody">
-        <tr>
-          <td>2</td>
-          <td>阿喵</td>
-          <td>審核中</td>
-          <td></td>
-          <td><input type="radio" name="petSelected"></td>
-        </tr>
+      <div *ngFor="let pet of this.petList; let i=index;">
+        <!-- 要遍歷 -->
+        <div class="tableBody">
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{pet.name}}</td>
+            <td>{{pet.postStatus}}</td>
+            <td>{{pet.publishDate}}</td>
+            <td><input type="radio" name="petSelected" (click)="selectPet([pet])"></td>
+          </tr>
+        </div>
+        <!-- 若點選則出現以下，value代進去 -->
+        <form [formGroup]="form">
+          <div class="petDetail" *ngIf="this.selectedPetId == pet.id">
+            <p>寵物名字</p>
+            <input type="text" name="name" formControlName="name" />
+            <p>寵物種類</p>
+            <select name="species" formControlName="species">
+              <option *ngFor="let species of this.speciesList" value={{species.speciesId}}
+                [selected]="pet.species==species.speciesName">{{species.speciesName}}</option>
+            </select>
+            <p>所在地</p>
+            <select name="city" formControlName="city">
+              <option *ngFor="let city of this.cityList" value={{city.cityId}} [selected]="pet.city==city.cityName">
+                {{city.cityName}}</option>
+            </select>
+            <p>寵物品種</p>
+            <input type="text" name="type" formControlName="type" />
+            <p>寵物體型</p>
+            <input type="text" name="size" formControlName="size" />
+            <p>寵物毛色</p>
+            <input type="text" name="color" formControlName="color" />
+            <p>寵物年紀</p>
+            <input type="text" name="age" formControlName="age" />
+            <div>
+              <input type="radio" value="F" name="sex" [checked]="pet.sex=='F'" formControlName="sex" />母
+              <input type="radio" value="M" name="sex" [checked]="pet.sex=='M'" formControlName="sex" />公
+            </div>
+            <input type="checkbox" value="Y" name="ligation" [checked]="pet.ligation=='Y'"
+              formControlName="ligation" />是否已結紮
+            <p>更多介紹</p>
+            <textarea name="introduction" class="introduction" cols="30" rows="10"
+              formControlName="introduction">{{pet.introduction}}</textarea>
+            <p>動物照片</p>
+            <img [src]="pet.photo" show="Base64">
+            <!-- 上傳功能 -->
+            <br>
+            <input type="checkbox" value="Y" name="affidavit" formControlName="affidavit" />是否需簽署養切結書
+            <br>
+            <input type="checkbox" value="Y" name="followUp" formControlName="followUp" />是否需接受後續追蹤
+            <br>
+            <input type="checkbox" value="Y" name="ageLimit" formControlName="ageLimit" />是否需年滿20歲
+            <br>
+            <input type="checkbox" value="Y" name="parentalPermission" formControlName="parentalPermission" />是否需家人同意
+            <div class="buttonContainer">
+              <!-- 要跳到更改資訊的頁面 -->
+              <button (click)="modifyPetInfo()">更改資訊</button>
+              <button (click)="deletePetInfo()">刪除寵物</button>
+            </div>
+          </div>
+        </form>
       </div>
     </tbody>
   </table>
-  <div class="buttonContainer">
-    <button>更改資訊</button>
-    <button>取消刊登</button>
-  </div>
 </div>
