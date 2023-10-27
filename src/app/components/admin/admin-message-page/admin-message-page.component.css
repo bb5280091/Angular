@@ -5,8 +5,8 @@
   border: 1px #D24C4C solid;
 }
 
-table{
-padding-top: 15px;
+table {
+  padding-top: 15px;
 }
 
 .messagePageTitle {
@@ -24,7 +24,7 @@ padding-top: 15px;
 
 .tableBody {
   background-color: white;
-  padding: 14px 8px 3px 5px;
+  padding: 23px 8px 3px 5px;
   border-radius: 18px;
   color: #872222;
   font-weight: 500;
@@ -47,4 +47,13 @@ td {
 .message {
   max-width: 460px;
   width: 460px;
+}
+
+tr :hover {
+  color: #A52A2A;
+  font-weight: bold;
+}
+
+.tableBody :hover {
+  cursor: pointer;
 }

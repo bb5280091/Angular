@@ -4,21 +4,13 @@
   <table>
     <tbody>
       <!-- 要遍歷 -->
-      <div class="tableBody">
-        <!-- 點tr會跳到他們的聊天窗 -->
-        <tr><a routerLink="/member/chatroom" routerLinkActive="active">
-          <!-- 把圖片拿掉，因為會員基本資料也沒傳圖片 -->
-          <td class="name">小明</td>
-          <td class="message">嗨!!!</td>
-          <td class="date">2023/10/17</td>
-          </a>
-        </tr>
-      </div>
-      <div class="tableBody">
+      <!-- 點tr會跳到他們的聊天窗 -->
+      <div class="tableBody" *ngFor="let message of this.messageList;"
+        (click)="messageClicked(this.userId==message.senderId?message.receiverId:message.senderId)">
         <tr>
-          <td class="name">張張</td>
-          <td class="message">你好!!</td>
-          <td class="date">2023/10/17</td>
+            <td class="name">{{message.name}}</td>
+            <td class="message">{{message.content}}</td>
+            <td class="date">{{message.time|date:'yyyy/M/d'}}</td>
         </tr>
       </div>
     </tbody>

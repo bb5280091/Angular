@@ -25,7 +25,7 @@ export class AdoptService {
   }
 
   //新增寵物資料
-  createPetInfo(list: PetFormModel[]) {
+  createPetInfo(list: PetFormModel[], photo: any) {
     const postData = {
       "request": {
         "name": list[0].name,
@@ -38,7 +38,7 @@ export class AdoptService {
         "ligation": list[0].ligation,
         "city": list[0].city,
         "conditionAffidavit": list[0].conditionAffidavit,
-        "conditionFollowup": list[0].conditionFollowUp,
+        "conditionFollowUp": list[0].conditionFollowUp,
         "conditionAgeLimit": list[0].conditionAgeLimit,
         "conditionParentalPermission": list[0].conditionParentalPermission,
         "introduction": list[0].introduction,
@@ -49,7 +49,8 @@ export class AdoptService {
         "userId": 1
       }
     }
-    return this.http.post<any>(this.url + "/adoptions", postData);
+    console.log(photo);
+    return this.http.post<any>(this.url + "/adoptions", postData, { params: { photo: photo } });
   };
 
   //更新會員資訊:可用於會員只更新名字電話，管理員停權更改status(有別隻api)
@@ -120,10 +121,20 @@ export class AdoptService {
   //修改發文狀態
   updatePostStatus(id: number, postStatus: String) {
     const postData = {
-        "id": id,
-        "status": postStatus
-      }
+      "id": id,
+      "status": postStatus
+    }
     return this.http.put<any>(this.url + "/adoptions/status", postData);
+  }
+
+  //查詢對話
+  showMessages(userId: number) {
+    return this.http.get<any>(this.url + "/messages", { params: { userId: userId } });
+  }
+
+  //查詢一對一的聊天紀錄
+  showChatroomMessages(userId: number, otherId: number) {
+    return this.http.get<any>(this.url + "/messages", { params: { userId: userId, otherId: otherId } });
   }
 
 }

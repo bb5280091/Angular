@@ -14,7 +14,7 @@ import { DialogComponent } from '../../dialog/dialog.component';
 export class PetgivingRecordPageComponent {
   cityList: any;
   speciesList: any;
-  userId = 2;
+  userId = 1;
   petList: PetFormModel[] = [];
   showDetails = false;
   selectedPetId = 0;

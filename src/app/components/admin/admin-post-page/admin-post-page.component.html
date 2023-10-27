@@ -62,7 +62,7 @@
           <textarea name="introduction" class="introduction" cols="30" rows="10"
             disabled>{{pet.introduction}}</textarea>
           <p>動物照片</p>
-          <img src="assets\images\黃金獵犬.jpg">
+          <img src="data:image/png;base64,{{pet.photo}}">
           <!-- 上傳功能 -->
           <br>
           <input type="checkbox" value="Y" name="affidavit" disabled [checked]="pet.conditionAffidavit=='Y'" />是否需簽署養切結書

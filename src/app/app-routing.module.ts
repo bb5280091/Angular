@@ -74,6 +74,10 @@ const routes: Routes = [
       {
         path: 'message',
         component: AdminMessagePageComponent
+      },
+      {
+        path: 'chatroom',
+        component: ChatRoomPageComponent
       }
     ]
   }

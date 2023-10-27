@@ -1,11 +1,20 @@
-<div class="container">
-  <div class="chat-box">
-    <div class="message-box" *ngFor="let msg of messages">
-      <div class="message" [ngClass]="{'message-sent': msg.sender === 'YourUsername'}">
-        <strong>{{ msg.sender }}:</strong> {{ msg.content }}
-        <span>{{ msg.content }}</span>
+<input type="number" (keyup.enter)="setId()" id="myId" placeholder="enter your id" />
+<div class="chat-container">
+  <div>
+    <div class="receiver-info">私訊 : {{this.name}}</div>
+    <div class="chat-box">
+      <div class="message-box" *ngFor="let msg of messages">
+        <div class="message" [ngClass]="{'message-sent': msg.senderId === this.myId}">
+          <strong>{{ msg.senderId === this.myId ? '我: ' : '他: ' }}</strong>
+          <span>{{ msg.content }}</span>
+        </div>
+        <span class="time">{{msg.time}}</span>
       </div>
     </div>
+  </div>
+  <div class="image-container">
+    <img src="\assets\images\動物們邊框.png" class="image" />
+    <img src="\assets\images\動物們邊框.png" class="image" />
   </div>
   <div class="input-box">
     <input [(ngModel)]="message" (keyup.enter)="sendMessage()" placeholder="Type your message...">

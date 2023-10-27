@@ -16,7 +16,7 @@ export class FormPageComponent {
   cityList: any;
   speciesList: any;
   createPetList: PetFormModel[] = [];
-  selectedFile!: Blob;
+  selectedFile!: string;
 
   form = this.formBuilder.group({
     name: ['', Validators.required],
@@ -28,7 +28,7 @@ export class FormPageComponent {
     age: ['', Validators.required],
     sex: ['', Validators.required],
     ligation: [''],
-    introduction: ['', Validators.required],
+    introduction: [''],
     photo: ['', Validators.required],
     affidavit: [''],
     followUp: [''],
@@ -39,7 +39,7 @@ export class FormPageComponent {
   onSubmit() {
     console.log(this.form);
     console.log(this.form.value);
-    console.log(this.form.value.photo);
+    console.log(this.selectedFile);
 
     //輸入錯誤
     if (this.form.invalid) {
@@ -62,8 +62,8 @@ export class FormPageComponent {
         sex: formData.sex || null,
         ligation: formData.ligation ? "T" : "Y",
         introduction: formData.introduction || null,
-        photo: this.selectedFile || null,
-        //photo: null,
+        //photo: this.selectedFile || null,
+        photo: this.selectedFile,
         postStatus: null,//沒用到
         publishDate: null,//沒用到
         conditionAffidavit: formData.affidavit ? "T" : "Y",
@@ -75,21 +75,23 @@ export class FormPageComponent {
       };
       console.log(petData);
       this.createPetList.push(petData);
-      this.service.createPetInfo(this.createPetList).subscribe(response => {
-        console.log(response), response.returnCode = '0000' ? this.dialog.open(DialogComponent, {
-          //新增成功dialog
-          data: { dialogMode: 'createSuccessDialog' }
-        }) : this.dialog.open(DialogComponent, {
-          data: { dialogMode: 'createFailedDialog' }
-        })
-      });
-      this.clearInput();
-    } else {
-      this.dialog.open(DialogComponent, {
-        data: { dialogMode: 'createFailedDialog' }
+      const uploadImageData = new FormData();
+      uploadImageData.append('photo', this.selectedFile);
+      this.service.createPetInfo(this.createPetList, uploadImageData).subscribe(response => {
+        console.log(response);
+        if (response.statusCode === '0000') {
+          this.dialog.open(DialogComponent, {
+            //新增成功dialog
+            data: { dialogMode: 'createSuccessDialog' }
+          });
+          this.clearInput();
+        } else {
+          this.dialog.open(DialogComponent, {
+            data: { dialogMode: 'createFailedDialog' }
+          })
+        }
       });
     }
-
   }
 
   ngOnInit() {
@@ -124,14 +126,32 @@ export class FormPageComponent {
     this.createPetList = [];
   }
 
-  onPhotoChange(event: any) {
-    // if (event.target.files.length > 0) {
-    //   const file = event.target.files[0];
-    //   this.form.patchValue({
-    //     photo: file
-    //   });
-    // }
-    this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
+  async onPhotoChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      //this.selectedFile = file;
+      //console.log(([JSON.stringify(this.selectedFile)]));
+
+      this.selectedFile = await this.getBase64(file).then();
+
+      console.log(this.selectedFile);
+      console.log(this.selectedFile.split(",")[1]);
+      console.log(this.selectedFile.substring("data:image/[^;]base64,".length));
+      this.selectedFile = this.selectedFile.split(",")[1];//將前綴拿掉
+
+      // console.log(URL.createObjectURL(file));
+      // this.selectedFile = URL.createObjectURL(file).substring("blob:".length);
+
+      console.log(this.selectedFile);
+    }
+  }
+
+  getBase64(file: Blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 }

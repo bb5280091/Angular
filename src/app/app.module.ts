@@ -20,6 +20,7 @@ import { PetgivingRecordPageComponent } from './components/member/petgiving-reco
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatRoomPageComponent } from './components/chat-room-page/chat-room-page.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { ChatRoomPageComponent } from './components/chat-room-page/chat-room-pag
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

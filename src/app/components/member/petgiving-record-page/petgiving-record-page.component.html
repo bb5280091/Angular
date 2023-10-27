@@ -56,7 +56,7 @@
             <textarea name="introduction" class="introduction" cols="30" rows="10"
               formControlName="introduction">{{pet.introduction}}</textarea>
             <p>動物照片</p>
-            <img [src]="pet.photo" show="Base64">
+            <img src="data:image/png;base64,{{pet.photo}}">
             <!-- 上傳功能 -->
             <br>
             <input type="checkbox" value="Y" name="affidavit" formControlName="affidavit" />是否需簽署養切結書
