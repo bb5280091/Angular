@@ -14,6 +14,7 @@ import { MessagePageComponent } from './components/member/message-page/message-p
 import { PetgivingRecordPageComponent } from './components/member/petgiving-record-page/petgiving-record-page.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { DetailPageComponent } from './components/detail-page/detail-page.component';
+import { authGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -37,6 +38,8 @@ const routes: Routes = [
   {
     path: 'member',
     component: MemberPageComponent,
+    canActivate: [authGuard],
+    data: { roles: [ 'USER'] } ,
     children: [
       {
         path: 'info',
@@ -63,6 +66,8 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent,
+    canActivate: [authGuard],
+    data: { roles: [ 'ADMIN'] } ,
     children: [
       {
         path: 'post',

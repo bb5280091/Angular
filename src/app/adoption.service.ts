@@ -1,14 +1,15 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { actionStatus, animals, cityData, simpleAnimals, speciesData } from './adpotion-model';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdoptionService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
 
   /**
@@ -92,5 +93,12 @@ export class AdoptionService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const requestUrl = 'http://localhost:8080/comment/species'
     return this.http.get<speciesData>(requestUrl, { headers });
+  }
+
+  /**
+   * 若任合需要登入的尚未使用的服務則使用該函數
+   */
+  navigateToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }
