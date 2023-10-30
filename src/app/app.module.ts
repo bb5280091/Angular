@@ -48,7 +48,7 @@ import { JwtInterceptor } from './JwtInterceptor';
     SearchPageComponent,
     DetailPageComponent,
     ChatRoomPageComponent
-  ]
+  ],
 
   imports: [
     BrowserModule,
