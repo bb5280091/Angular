@@ -2,14 +2,13 @@
 <div class="chat-container">
   <div>
     <div class="receiver-info">私訊 : {{this.name}}</div>
-    <div class="chat-box">
-      <div class="message-box" *ngFor="let msg of messages">
-        <div class="message" [ngClass]="{'message-sent': msg.senderId === this.myId}">
-          <strong>{{ msg.senderId === this.myId ? '我: ' : '他: ' }}</strong>
-          <span>{{ msg.content }}</span>
-        </div>
-        <span class="time">{{msg.time}}</span>
+    <div class="message-box" *ngFor="let msg of messages">
+      <div class="message" [ngClass]="{'message-sent': msg.senderId === this.myId}"
+        [ngStyle]="{'background-color': msg.senderId === this.myId ? '#A773A5' : '#A487CA'}">
+        <strong>{{ msg.senderId === this.myId ? '我: ' : '他: ' }}</strong>
+        <span>{{ msg.content }}</span>
       </div>
+      <span class="time">{{msg.time}}</span>
     </div>
   </div>
   <div class="image-container">

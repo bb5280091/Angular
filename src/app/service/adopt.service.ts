@@ -25,7 +25,7 @@ export class AdoptService {
   }
 
   //新增寵物資料
-  createPetInfo(list: PetFormModel[], photo: any) {
+  createPetInfo(list: PetFormModel[]) {
     const postData = {
       "request": {
         "name": list[0].name,
@@ -42,15 +42,14 @@ export class AdoptService {
         "conditionAgeLimit": list[0].conditionAgeLimit,
         "conditionParentalPermission": list[0].conditionParentalPermission,
         "introduction": list[0].introduction,
-        "photo": [
+        "photo":
           list[0].photo
-        ],
+        ,
         //這個先設1要抓登入的人id是什麼
         "userId": 1
       }
     }
-    console.log(photo);
-    return this.http.post<any>(this.url + "/adoptions", postData, { params: { photo: photo } });
+    return this.http.post<any>(this.url + "/adoptions", postData);
   };
 
   //更新會員資訊:可用於會員只更新名字電話，管理員停權更改status(有別隻api)

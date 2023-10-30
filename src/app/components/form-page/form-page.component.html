@@ -28,6 +28,7 @@
     <textarea formControlName="introduction" name="introduction" class="introduction" cols="30" rows="10"
       placeholder="請描寫更多信息..."></textarea>
     <p>動物照片</p>
+    <img *ngIf="this.selectedFile!==undefined" src="data:image/png;base64,{{this.selectedFile}}">
     <input type="file" formControlName="photo" name="photo" (change)="onPhotoChange($event)">
     <!-- 上傳功能 -->
     <br>

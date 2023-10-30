@@ -20,10 +20,6 @@
   word-wrap: break-word;
 }
 
-.chat-box {
-  /* 可能需要更多的样式，具体取决于你的设计 */
-}
-
 .input-box {
 
   display: flex;
@@ -81,7 +77,6 @@ button:active {
 }
 
 .message {
-background-color: #A487CA;
 margin: 10px;
 color: white;
 border-radius: 6px;

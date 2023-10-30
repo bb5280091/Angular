@@ -1,15 +1,38 @@
 <div [ngSwitch]="data.dialogMode">
   <!-- 刪除跳窗 -->
   <ng-container *ngSwitchCase="'deleteDialog'">
-    <h1 mat-dialog-title>您欲刪除{{data.id}}-{{data.storeName}}，是否確定刪除?</h1>
+    <h1 mat-dialog-title>您欲刪除{{data.petName}}，是否確定刪除?</h1>
     <div mat-dialog-content>
       <p>點選確定後刪除</p>
     </div>
     <div mat-dialog-actions>
       <button mat-button [mat-dialog-close]="">取消</button>
-      <button mat-button [mat-dialog-close]="data.id" cdkFocusInitial>確認</button>
+      <button mat-button [mat-dialog-close]="data.petName" cdkFocusInitial>確認</button>
     </div>
   </ng-container>
+
+  <!-- 登入成功 -->
+  <ng-container *ngSwitchCase="'loginSuccessDialog'">
+    <p mat-dialog-title>Success</p>
+    <div mat-dialog-content>
+      <span>登入成功</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+    <!-- 未登入跳窗 -->
+    <ng-container *ngSwitchCase="'loginDialog'">
+      <h1 mat-dialog-title>您尚未登入，是否幫您轉向登入頁面?</h1>
+      <div mat-dialog-content>
+        <p>點選是後立即導向</p>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="">否</button>
+        <button mat-button [mat-dialog-close]="data.id" cdkFocusInitial>是</button>
+      </div>
+    </ng-container>
 
   <!-- 若為新增成功 -->
   <ng-container *ngSwitchCase="'createSuccessDialog'">
@@ -82,17 +105,6 @@
     <p mat-dialog-title>Fail</p>
     <div mat-dialog-content>
       <span>查詢失敗:查無資料</span>
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button [mat-dialog-close]="">關閉</button>
-    </div>
-  </ng-container>
-
-  <!-- 未點選店家 -->
-  <ng-container *ngSwitchCase="'unselectRadioDialog'">
-    <p mat-dialog-title>Warning</p>
-    <div mat-dialog-content>
-      <span>請先點選一筆店家資訊</span>
     </div>
     <div mat-dialog-actions>
       <button mat-button [mat-dialog-close]="">關閉</button>

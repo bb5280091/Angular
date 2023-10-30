@@ -19,14 +19,14 @@ export class FormPageComponent {
   selectedFile!: string;
 
   form = this.formBuilder.group({
-    name: ['', Validators.required],
+    name: ['', [Validators.required, Validators.pattern(/[\S]/)]],
     species: ['', Validators.required],
     city: ['', Validators.required],
-    type: ['', Validators.required],
-    size: ['', Validators.required],
-    color: ['', Validators.required],
-    age: ['', Validators.required],
-    sex: ['', Validators.required],
+    type: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    size: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    color: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    age: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    sex: ['', [Validators.required, Validators.pattern(/[\S]/)]],
     ligation: [''],
     introduction: [''],
     photo: ['', Validators.required],
@@ -60,24 +60,21 @@ export class FormPageComponent {
         color: formData.color || null,
         age: formData.age || null,
         sex: formData.sex || null,
-        ligation: formData.ligation ? "T" : "Y",
+        ligation: formData.ligation ? "Y" : "N",
         introduction: formData.introduction || null,
-        //photo: this.selectedFile || null,
-        photo: this.selectedFile,
+        photo: this.selectedFile || null,
         postStatus: null,//沒用到
         publishDate: null,//沒用到
-        conditionAffidavit: formData.affidavit ? "T" : "Y",
-        conditionFollowUp: formData.followUp ? "T" : "Y",
-        conditionAgeLimit: formData.ageLimit ? "T" : "Y",
-        conditionParentalPermission: formData.parentalPermission ? "T" : "Y",
+        conditionAffidavit: formData.affidavit ? "Y" : "N",
+        conditionFollowUp: formData.followUp ? "Y" : "N",
+        conditionAgeLimit: formData.ageLimit ? "Y" : "N",
+        conditionParentalPermission: formData.parentalPermission ? "Y" : "N",
         //先預設userId = 1
         userId: 1
       };
       console.log(petData);
       this.createPetList.push(petData);
-      const uploadImageData = new FormData();
-      uploadImageData.append('photo', this.selectedFile);
-      this.service.createPetInfo(this.createPetList, uploadImageData).subscribe(response => {
+      this.service.createPetInfo(this.createPetList).subscribe(response => {
         console.log(response);
         if (response.statusCode === '0000') {
           this.dialog.open(DialogComponent, {
@@ -129,19 +126,11 @@ export class FormPageComponent {
   async onPhotoChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      //this.selectedFile = file;
-      //console.log(([JSON.stringify(this.selectedFile)]));
-
       this.selectedFile = await this.getBase64(file).then();
 
       console.log(this.selectedFile);
       console.log(this.selectedFile.split(",")[1]);
-      console.log(this.selectedFile.substring("data:image/[^;]base64,".length));
-      this.selectedFile = this.selectedFile.split(",")[1];//將前綴拿掉
-
-      // console.log(URL.createObjectURL(file));
-      // this.selectedFile = URL.createObjectURL(file).substring("blob:".length);
-
+      this.selectedFile = this.selectedFile.split(",")[1];//將前綴(blob:)拿掉
       console.log(this.selectedFile);
     }
   }

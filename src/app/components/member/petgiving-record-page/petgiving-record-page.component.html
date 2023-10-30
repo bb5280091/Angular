@@ -24,8 +24,8 @@
           </tr>
         </div>
         <!-- 若點選則出現以下，value代進去 -->
-        <form [formGroup]="form">
-          <div class="petDetail" *ngIf="this.selectedPetId == pet.id">
+        <div class="petDetail" *ngIf="this.selectedPetId == pet.id">
+            <form [formGroup]="form">
             <p>寵物名字</p>
             <input type="text" name="name" formControlName="name" />
             <p>寵物種類</p>
@@ -56,7 +56,9 @@
             <textarea name="introduction" class="introduction" cols="30" rows="10"
               formControlName="introduction">{{pet.introduction}}</textarea>
             <p>動物照片</p>
-            <img src="data:image/png;base64,{{pet.photo}}">
+            <img src="data:image/png;base64,{{this.selectedFile}}">
+            <br>
+            <input type="file" formControlName="photo" name="photo" (change)="onPhotoChange($event)">
             <!-- 上傳功能 -->
             <br>
             <input type="checkbox" value="Y" name="affidavit" formControlName="affidavit" />是否需簽署養切結書
@@ -71,8 +73,8 @@
               <button (click)="modifyPetInfo()">更改資訊</button>
               <button (click)="deletePetInfo()">刪除寵物</button>
             </div>
+          </form>
           </div>
-        </form>
       </div>
     </tbody>
   </table>
