@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DecodedToken, User, actionStatus, animals, cityData, simpleAnimals, speciesData } from './adpotion-model';
+import { DecodedToken, User, actionStatus, animals, cityData, simpleAnimals, speciesData } from '../adpotion-model';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import {jwtDecode} from 'jwt-decode';

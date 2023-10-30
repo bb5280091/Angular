@@ -3,12 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-
-
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { AdminPageComponent } from './components/admin/admin-page/admin-page.component';
 import { AdminPostPageComponent } from './components/admin/admin-post-page/admin-post-page.component';
 import { CommonPageComponent } from './components/common-page/common-page.component';

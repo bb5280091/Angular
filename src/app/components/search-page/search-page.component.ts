@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { AdoptionService } from 'src/app/adoption.service';
+import { AdoptionService } from 'src/app/service/adoption.service';
 import { animal, city, simpleAnimal, species } from 'src/app/adpotion-model';
 
 @Component({

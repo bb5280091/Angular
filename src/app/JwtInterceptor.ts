@@ -7,7 +7,7 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor() { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('jwtToken');
-    console.log("友友友有被觸發"+token)
+    console.log("apiHeader有被觸發"+token)
     if (token) {
       request = request.clone({
         setHeaders: {
