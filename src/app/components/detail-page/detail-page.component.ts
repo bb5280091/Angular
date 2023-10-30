@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdoptionService } from 'src/app/adoption.service';
+import { AdoptionService } from 'src/app/service/adoption.service';
 import { animal } from 'src/app/adpotion-model';
 
 @Component({

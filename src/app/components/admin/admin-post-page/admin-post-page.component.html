@@ -1,89 +1,83 @@
 <div class="postManagement">
   <p class="postManagementTitle">刊登管理</p>
   <div class="Line"></div>
-  <input type="radio" name="search" />寵物編號
-  <input type="radio" name="search" />會員編號
-  <input type="text" class="searchInput">
-  <button class="searchButton">查詢</button>
+  <input type="radio" name="search" (click)="this.searchingOption='byPetId'; this.ngOnInit();" />寵物編號
+  <input type="radio" name="search" (click)="this.searchingOption='byUserId'; this.ngOnInit();" />會員編號
+  <input type="number" class="searchInput" id="searchInput">
+  <button class="searchButton" (click)="search()">查詢</button>
   <table>
     <div class="tableTitle">
       <thead>
         <th>#</th>
         <th>寵物編號</th>
         <th>會員編號</th>
+        <th>刊登狀態</th>
         <th>填寫日期</th>
         <th></th>
       </thead>
     </div>
     <tbody>
-      <!-- 要遍歷 -->
-      <div class="tableBody">
-        <tr>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>2023/10/17</td>
-          <td><input type="radio" name="petSelected"></td>
-        </tr>
-      </div>
-      <!-- 若點選則出現以下，value代進去 -->
-      <div class="petDetail">
-        <p>寵物名字</p>
-        <input type="text" name="name" value="阿金" disabled />
-        <p>寵物種類</p>
-        <select name="species" disabled>
-          <option selected>狗</option>
-          <option>貓</option>
-          <option>鼠</option>
-          <option>兔</option>
-        </select>
-        <p>所在地</p>
-        <select name="city" disabled>
-          <option>基隆市</option>
-          <option selected>台北市</option>
-          <option>新北市</option>
-          <option>高雄市</option>
-        </select>
-        <p>寵物品種</p>
-        <input type="text" name="type" value="黃金獵犬" disabled />
-        <p>寵物體型</p>
-        <input type="text" name="size" value="大" disabled />
-        <p>寵物毛色</p>
-        <input type="text" name="color" value="黃色" disabled />
-        <p>寵物年紀</p>
-        <input type="text" name="age" value="兩歲五個月" disabled />
-        <div>
-          <input type="radio" value="F" name="sex" disabled checked />母
-          <input type="radio" value="M" name="sex" disabled />公
+      <div *ngFor="let pet of this.petList; let i=index;">
+        <!-- 要遍歷 -->
+        <div class="tableBody">
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{pet.id}}</td>
+            <td>{{pet.userId}}</td>
+            <!-- 新增的 -->
+            <td>{{pet.postStatus}}</td>
+            <td>{{pet.publishDate}}</td>
+            <td><input type="radio" name="petSelected" (click)="selectPet([pet])"></td>
+          </tr>
         </div>
-        <input type="checkbox" value="Y" name="ligation" disabled checked />是否已結紮
-        <p>更多介紹</p>
-        <textarea name="introduction" class="introduction" cols="30" rows="10" disabled>很可愛~</textarea>
-        <p>動物照片</p>
-        <img src="assets\images\黃金獵犬.jpg">
-        <!-- 上傳功能 -->
-        <br>
-        <input type="checkbox" value="Y" name="affidavit" disabled checked />是否需簽署養切結書
-        <br>
-        <input type="checkbox" value="Y" name="followUp" disabled checked />是否需接受後續追蹤
-        <br>
-        <input type="checkbox" value="Y" name="ageLimit" disabled checked />是否需年滿20歲
-        <br>
-        <input type="checkbox" value="Y" name="parentalPermission" disabled checked />是否需家人同意
-      </div>
-      <div class="buttonContainer">
-        <button>立即發布</button>
-        <button>取消刊登</button>
-      </div>
-
-      <div class="tableBody">
-        <tr>
-          <td>2</td>
-          <td>2</td>
-          <td>2</td>
-          <td>2023/10/18</td>
-          <td><input type="radio" name="petSelected"></td>
-        </tr>
+        <!-- 若點選則出現以下，value代進去 -->
+        <div class="petDetail" *ngIf="this.selectedPetId == pet.id">
+          <p>寵物名字</p>
+          <input type="text" name="name" value={{pet.name}} disabled />
+          <p>寵物種類</p>
+          <select name="species" disabled>
+            <option disabled *ngFor="let species of this.speciesList" value={{species.speciesId}}
+              [selected]="pet.species==species.speciesId">{{species.speciesName}}</option>
+          </select>
+          <p>所在地</p>
+          <select name="city" disabled>
+            <option disabled *ngFor="let city of this.cityList" value={{city.cityId}}
+              [selected]="pet.city==city.cityId">
+              {{city.cityName}}</option>
+          </select>
+          <p>寵物品種</p>
+          <input type="text" name="type" value={{pet.type}} disabled />
+          <p>寵物體型</p>
+          <input type="text" name="size" value={{pet.size}} disabled />
+          <p>寵物毛色</p>
+          <input type="text" name="color" value={{pet.color}} disabled />
+          <p>寵物年紀</p>
+          <input type="text" name="age" value={{pet.age}} disabled />
+          <div>
+            <input type="radio" value="F" name="sex" disabled [checked]="pet.sex=='F'" />母
+            <input type="radio" value="M" name="sex" disabled [checked]="pet.sex=='M'" />公
+          </div>
+          <input type="checkbox" value="Y" name="ligation" disabled [checked]="pet.ligation=='Y'" />是否已結紮
+          <p>更多介紹</p>
+          <textarea name="introduction" class="introduction" cols="30" rows="10"
+            disabled>{{pet.introduction}}</textarea>
+          <p>動物照片</p>
+          <img src="data:image/png;base64,{{pet.photo}}">
+          <!-- 上傳功能 -->
+          <br>
+          <input type="checkbox" value="Y" name="affidavit" disabled [checked]="pet.conditionAffidavit=='Y'" />是否需簽署養切結書
+          <br>
+          <input type="checkbox" value="Y" name="followUp" disabled [checked]="pet.conditionFollowUp=='Y'" />是否需接受後續追蹤
+          <br>
+          <input type="checkbox" value="Y" name="ageLimit" disabled [checked]="pet.conditionAgeLimit=='Y'" />是否需年滿20歲
+          <br>
+          <input type="checkbox" value="Y" name="parentalPermission" disabled
+            [checked]="pet.conditionParentalPermission=='Y'" />是否需家人同意
+          <div class="buttonContainer">
+            <button (click)="post()">立即發布</button>
+            <button (click)="cancelPosting()">取消刊登</button>
+          </div>
+        </div>
       </div>
     </tbody>
   </table>

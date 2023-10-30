@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdoptionService } from 'src/app/adoption.service';
+import { AdoptionService } from 'src/app/service/adoption.service';
 
 @Component({
   selector: 'app-login-page',

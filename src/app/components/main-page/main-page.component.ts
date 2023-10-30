@@ -1,8 +1,11 @@
-import { simpleAnimal } from './../../adpotion-model';
 
-import { AdoptionService } from './../../adoption.service';
+
+import { AdoptService } from 'src/app/service/adopt.service';
+import { simpleAnimal } from './../../adpotion-model';
+import { AdoptionService } from '../../service/adoption.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-main-page',

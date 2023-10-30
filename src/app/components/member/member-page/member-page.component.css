@@ -4,7 +4,7 @@
 }
 
 .MemberBar {
-  width: 185px;
+  width: 18%;
   height: 100%;
   padding-left: 49px;
   padding-right: 49px;
@@ -28,3 +28,4 @@
 .NavText :hover {
   font-weight: bold;
 }
+

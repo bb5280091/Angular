@@ -13,6 +13,7 @@ import { MemberPageComponent } from './components/member/member-page/member-page
 import { MessagePageComponent } from './components/member/message-page/message-page.component';
 import { PetgivingRecordPageComponent } from './components/member/petgiving-record-page/petgiving-record-page.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
+import { ChatRoomPageComponent } from './components/chat-room-page/chat-room-page.component';
 import { DetailPageComponent } from './components/detail-page/detail-page.component';
 import { authGuard } from './guards/auth.guard';
 
@@ -58,6 +59,10 @@ const routes: Routes = [
       {
         path: 'message',
         component: MessagePageComponent
+      },
+      {
+        path: 'chatroom',
+        component: ChatRoomPageComponent
       }
     ]
   },
@@ -82,6 +87,10 @@ const routes: Routes = [
       {
         path: 'message',
         component: AdminMessagePageComponent
+      },
+      {
+        path: 'chatroom',
+        component: ChatRoomPageComponent
       }
     ]
   }

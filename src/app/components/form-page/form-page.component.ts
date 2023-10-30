@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AdoptService } from 'src/app/service/adopt.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { PetFormModel } from '../interfaces/pet.interface';
 
 @Component({
   selector: 'app-form-page',
@@ -8,20 +12,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FormPageComponent {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private service: AdoptService, public dialog: MatDialog) { }
+  cityList: any;
+  speciesList: any;
+  createPetList: PetFormModel[] = [];
+  selectedFile!: string;
 
   form = this.formBuilder.group({
-    name: [''],
-    species: [''],
-    city: [''],
-    type: [''],
-    size: [''],
-    color: [''],
-    age: [''],
-    sex: [''],
+    name: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    species: ['', Validators.required],
+    city: ['', Validators.required],
+    type: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    size: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    color: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    age: ['', [Validators.required, Validators.pattern(/[\S]/)]],
+    sex: ['', [Validators.required, Validators.pattern(/[\S]/)]],
     ligation: [''],
     introduction: [''],
-    photo: [''],
+    photo: ['', Validators.required],
     affidavit: [''],
     followUp: [''],
     ageLimit: [''],
@@ -29,7 +37,110 @@ export class FormPageComponent {
   })
 
   onSubmit() {
+    console.log(this.form);
+    console.log(this.form.value);
+    console.log(this.selectedFile);
 
+    //輸入錯誤
+    if (this.form.invalid) {
+      this.dialog.open(DialogComponent, {
+        data: { dialogMode: 'invalidInputDialog' }
+      });
+    } else if (this.form.valid) {
+      //新增成功
+      const formData = this.form.value;
+      console.log(formData);
+      const petData: PetFormModel = {
+        id: null,
+        name: formData.name || null,
+        species: formData.species || null,
+        city: formData.city || null,
+        type: formData.type || null,
+        size: formData.size || null,
+        color: formData.color || null,
+        age: formData.age || null,
+        sex: formData.sex || null,
+        ligation: formData.ligation ? "Y" : "N",
+        introduction: formData.introduction || null,
+        photo: this.selectedFile || null,
+        postStatus: null,//沒用到
+        publishDate: null,//沒用到
+        conditionAffidavit: formData.affidavit ? "Y" : "N",
+        conditionFollowUp: formData.followUp ? "Y" : "N",
+        conditionAgeLimit: formData.ageLimit ? "Y" : "N",
+        conditionParentalPermission: formData.parentalPermission ? "Y" : "N",
+        //先預設userId = 1
+        userId: 1
+      };
+      console.log(petData);
+      this.createPetList.push(petData);
+      this.service.createPetInfo(this.createPetList).subscribe(response => {
+        console.log(response);
+        if (response.statusCode === '0000') {
+          this.dialog.open(DialogComponent, {
+            //新增成功dialog
+            data: { dialogMode: 'createSuccessDialog' }
+          });
+          this.clearInput();
+        } else {
+          this.dialog.open(DialogComponent, {
+            data: { dialogMode: 'createFailedDialog' }
+          })
+        }
+      });
+    }
   }
 
+  ngOnInit() {
+    //遍歷下拉式選單
+    this.service.showAllCity().subscribe(response => {
+      this.cityList = response.data;
+    });
+
+    this.service.showAllSpecies().subscribe(response => {
+      this.speciesList = response.data;
+    });
+  }
+
+  clearInput() {
+    this.form.setValue({
+      name: '',
+      species: '',
+      city: '',
+      type: '',
+      size: '',
+      color: '',
+      age: '',
+      sex: '',
+      ligation: '',
+      introduction: '',
+      photo: '',
+      affidavit: '',
+      followUp: '',
+      ageLimit: '',
+      parentalPermission: '',
+    })
+    this.createPetList = [];
+  }
+
+  async onPhotoChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.selectedFile = await this.getBase64(file).then();
+
+      console.log(this.selectedFile);
+      console.log(this.selectedFile.split(",")[1]);
+      this.selectedFile = this.selectedFile.split(",")[1];//將前綴(blob:)拿掉
+      console.log(this.selectedFile);
+    }
+  }
+
+  getBase64(file: Blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
 }

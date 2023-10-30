@@ -1,0 +1,135 @@
+<div [ngSwitch]="data.dialogMode">
+  <!-- 刪除跳窗 -->
+  <ng-container *ngSwitchCase="'deleteDialog'">
+    <h1 mat-dialog-title>您欲刪除{{data.petName}}，是否確定刪除?</h1>
+    <div mat-dialog-content>
+      <p>點選確定後刪除</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">取消</button>
+      <button mat-button [mat-dialog-close]="data.petName" cdkFocusInitial>確認</button>
+    </div>
+  </ng-container>
+
+  <!-- 登入成功 -->
+  <ng-container *ngSwitchCase="'loginSuccessDialog'">
+    <p mat-dialog-title>Success</p>
+    <div mat-dialog-content>
+      <span>登入成功</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+    <!-- 未登入跳窗 -->
+    <ng-container *ngSwitchCase="'loginDialog'">
+      <h1 mat-dialog-title>您尚未登入，是否幫您轉向登入頁面?</h1>
+      <div mat-dialog-content>
+        <p>點選是後立即導向</p>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="">否</button>
+        <button mat-button [mat-dialog-close]="data.id" cdkFocusInitial>是</button>
+      </div>
+    </ng-container>
+
+  <!-- 若為新增成功 -->
+  <ng-container *ngSwitchCase="'createSuccessDialog'">
+    <p mat-dialog-title>Success</p>
+    <div mat-dialog-content>
+      <span>新增成功</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+  <!-- 若為新增失敗 -->
+  <ng-container *ngSwitchCase="'createFailedDialog'">
+    <p mat-dialog-title>Fail</p>
+    <div mat-dialog-content>
+      <span>新增失敗</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+  <!-- 若為必填沒填 -->
+  <ng-container *ngSwitchCase="'invalidInputDialog'">
+    <p mat-dialog-title>Fail</p>
+    <div mat-dialog-content>
+      <span>請確認必填資料!</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+  <!-- 若為更新成功 -->
+  <ng-container *ngSwitchCase="'updateSuccessDialog'">
+    <p mat-dialog-title>Success</p>
+    <div mat-dialog-content>
+      <span>修改成功</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+  <!-- 若為更新失敗 -->
+  <ng-container *ngSwitchCase="'updateFailedDialog'">
+    <p mat-dialog-title>Fail</p>
+    <div mat-dialog-content>
+      <span>修改失敗:更新失敗</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+  <!-- 若為查詢成功 -->
+  <ng-container *ngSwitchCase="'querySuccessDialog'">
+    <p mat-dialog-title>Success</p>
+    <div mat-dialog-content>
+      <span>查詢成功</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+  <!-- 若為查詢失敗 -->
+  <ng-container *ngSwitchCase="'queryFailedDialog'">
+    <p mat-dialog-title>Fail</p>
+    <div mat-dialog-content>
+      <span>查詢失敗:查無資料</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+  <!-- 若為刪除失敗 -->
+  <ng-container *ngSwitchCase="'deleteFailedDialog'">
+    <p mat-dialog-title>Fail</p>
+    <div mat-dialog-content>
+      <span>刪除失敗</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
+  <!-- 若為刪除成功 -->
+  <ng-container *ngSwitchCase="'deleteSuccessDialog'">
+    <p mat-dialog-title>Success</p>
+    <div mat-dialog-content>
+      <span>刪除成功</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+</div>
