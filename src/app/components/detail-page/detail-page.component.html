@@ -1,0 +1,66 @@
+<body>
+  <div class="DetailContainer">
+    <div>
+      <img class="PetImage" src="data:image/png;base64,{{displayAnimals.photo}}" />
+      <div style="width: 637px; height: 91px; position: relative">
+        <div class="MoreAboutMeTitel">
+          更多關於我的事情:</div>
+        <div class="MoreAboutMeContent">
+          需要大量散步，個性親人活潑</div>
+      </div>
+    </div>
+    <div>
+      <div class="AboutMeTitel">{{displayAnimals.name}}</div>
+      <div class="AboutMeContent">
+        所在地: {{displayAnimals.city}}<br />
+        種類: {{displayAnimals.species}}<br />
+        品種:{{displayAnimals.type}}<br />
+        性別: {{ displayAnimals.sex === 'F' ? '母' : displayAnimals.sex === 'M' ? '公' : '' }}<br />
+        體型: {{displayAnimals.size}}<br />
+        毛色: {{displayAnimals.color}}<br />
+        年紀: {{displayAnimals.age}}<br />
+        是否結紮: {{ displayAnimals.ligation === 'Y' ? '已結紮' : displayAnimals.ligation === 'N' ? '尚未結紮' : '' }}<br />
+        刊登日期:**待更新後端**
+      </div>
+
+      <div style="width: 386px; height: 77px; position: relative">
+        <div class="AgeRequirement"  [ngStyle]="{'color': displayAnimals.conditionAgeLimit === 'Y' ? '#D14747' : '#DFD2D2'}"> 需年滿20歲</div>
+        <div class="TrackingRequirement" [ngStyle]="{'color': displayAnimals.conditionFollowup === 'Y' ? '#D14747' : '#DFD2D2'}"> 需接受後續追蹤</div>
+        <div class="FamilyApprovalRequirement"  [ngStyle]="{'color': displayAnimals.conditionParentalPermission === 'Y' ? '#D14747' : '#DFD2D2'}"> 需家人同意</div>
+        <div class="AgreementRequirement"  [ngStyle]="{'color': displayAnimals.conditionAffidavit === 'Y' ? '#D14747' : '#DFD2D2'}"> 需簽署養切結書</div>
+      </div>
+      <div class="ButtonFlex">
+        <button class="Button">
+          <div class="ButtomImgDiv">
+            <img class="ButtonImg" src="assets\images\mail.png" />
+          </div>
+          <div class="ButtonText">
+            私訊了解</div>
+        </button>
+      </div>
+      <div class="ButtonFlex">
+        <button class="Button">
+          <div class="ButtomImgDiv">
+            <img class="ButtonImg" src="assets\images\heart.png" />
+          </div>
+          <div class="ButtonText"> 我的收藏 </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="DialogBoxContainer">
+      <div class="DialogResponse">
+        <img class="UserPhoto" src="https://via.placeholder.com/26x26" />
+        <div class="UserName"> 小明</div>
+        <div class="ResponseText"> 想問一下，阿金有疾病嗎?</div>
+        <div class="ResponseTime"> B1 2小時前</div>
+      </div>
+      <div class="MessageInputContainer">
+        <img class="MessageInputUserPhoto" src="https://via.placeholder.com/30x26" />
+        <input class=" MessageInputTextBox" type="text" placeholder="回覆此則留言">
+        <button class="submitButton">送出 </button>
+      </div>
+    </div>
+
+  </div>
+</body>
