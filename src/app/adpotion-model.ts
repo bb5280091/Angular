@@ -55,6 +55,39 @@ export interface city {
   cityName: string;
 }
 
+//Users
+export interface Users{
+users : RespUser[] ;
+}
+
+
+//User
+export interface RespUser{
+  userId : number ;
+  name : string ;
+  mobile : string ;
+  googleAccount : string ;
+  status : string
+}
+
+//ReturmCode
+export interface ReturnStatus{
+  statusCode:string
+  status :string
+}
+
+//MinimalistAnimal
+export interface MinimalistAnimal{
+  id : number ;
+  name : string ;
+}
+//Subscription
+export interface SubscriptionDetail{
+userId : number ;
+id :number ;
+
+}
+
 //Event
 
 /**
@@ -86,6 +119,20 @@ export interface animals {
   response: animal[];
 }
 
+export interface MinimalistAnimalList{
+
+ response : MinimalistAnimal[] ;
+}
+
+//Adimin
+
+export interface UserStatus{
+status : string
+}
+
+export interface OneUser{
+  user :  RespUser
+ }
 
 //JWT自訂
 

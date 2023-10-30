@@ -24,5 +24,18 @@ export class DetailPageComponent implements OnInit {
       });
     });
   }
+  onSubscription(){
+if(localStorage.getItem('userId')){
+this.adoptionService. UserSubscription(Number(localStorage.getItem('userId')), this.animalId).subscribe((res)=>{
+console.log(res)
+  if(res.statusCode==='0000'){
+  console.log("訂閱成功")
+}else{
+  console.log("訂閱失敗")
+}
+
+})
+}
+  }
 
 }

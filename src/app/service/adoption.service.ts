@@ -1,16 +1,29 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DecodedToken, User, actionStatus, animals, cityData, simpleAnimals, speciesData } from '../adpotion-model';
+import {
+  DecodedToken,
+  MinimalistAnimalList,
+  OneUser,
+  RespUser,
+  ReturnStatus,
+  SubscriptionDetail,
+  User,
+  UserStatus,
+  Users,
+  actionStatus,
+  animals,
+  cityData,
+  simpleAnimals,
+  speciesData,
+} from '../adpotion-model';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdoptionService {
-
-  constructor(private http: HttpClient, private router: Router) { }
-
+  constructor(private http: HttpClient, private router: Router) {}
 
   /**
    * 搜尋前三名點擊的寵物資訊
@@ -18,7 +31,7 @@ export class AdoptionService {
    */
   onQueryRankCtr(): Observable<simpleAnimals> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const requestUrl = 'http://localhost:8080/adoptions/rankCtr'
+    const requestUrl = 'http://localhost:8080/adoptions/rankCtr';
     return this.http.get<simpleAnimals>(requestUrl, { headers });
   }
 
@@ -30,7 +43,7 @@ export class AdoptionService {
    */
   onAddCtr(animalId: number): Observable<actionStatus> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const requestUrl = `http://localhost:8080/adoptions/ctr?id=${animalId}`
+    const requestUrl = `http://localhost:8080/adoptions/ctr?id=${animalId}`;
     return this.http.put<actionStatus>(requestUrl, null, { headers });
   }
   /**
@@ -39,7 +52,7 @@ export class AdoptionService {
    */
   onQueryAllAnimal() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const requestUrl = 'http://localhost:8080/adoptions'
+    const requestUrl = 'http://localhost:8080/adoptions';
     return this.http.get<animals>(requestUrl, { headers });
   }
 
@@ -49,31 +62,39 @@ export class AdoptionService {
    */
   onQueryAnimalById(animalId: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const requestUrl = `http://localhost:8080/adoptions?animalId=${animalId}`
+    const requestUrl = `http://localhost:8080/adoptions?animalId=${animalId}`;
     return this.http.get<animals>(requestUrl, { headers });
   }
 
-
   /**
- * 有條件查詢寵物
- * @param cityId 城市
- * @param sex 性別
- * @param speciesId 寵物類別id
- * @returns animals
- */
+   * 有條件查詢寵物
+   * @param cityId 城市
+   * @param sex 性別
+   * @param speciesId 寵物類別id
+   * @returns animals
+   */
   onQueryConditionalAnimal(cityId?: string, sex?: string, speciesId?: string) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let queryParams = [];
-    if (cityId) { queryParams.push(`cityId=${cityId}`) }
-    else { queryParams.push(`cityId`) }
-    if (sex) { queryParams.push(`sex=${sex}`) }
-    else { queryParams.push(`sex`) }
-    if (speciesId) { queryParams.push(`speciesId=${speciesId}`) }
-    else { queryParams.push(`speciesId`) }
+    if (cityId) {
+      queryParams.push(`cityId=${cityId}`);
+    } else {
+      queryParams.push(`cityId`);
+    }
+    if (sex) {
+      queryParams.push(`sex=${sex}`);
+    } else {
+      queryParams.push(`sex`);
+    }
+    if (speciesId) {
+      queryParams.push(`speciesId=${speciesId}`);
+    } else {
+      queryParams.push(`speciesId`);
+    }
 
     const queryString = queryParams.join('&');
     const requestUrl = `http://localhost:8080/adoptions?${queryString}`;
-    console.log(requestUrl)
+    console.log(requestUrl);
     return this.http.get<animals>(requestUrl, { headers });
   }
   /**
@@ -82,7 +103,7 @@ export class AdoptionService {
    */
   onQueryAllCity() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const requestUrl = 'http://localhost:8080/comment/city'
+    const requestUrl = 'http://localhost:8080/comment/city';
     return this.http.get<cityData>(requestUrl, { headers });
   }
 
@@ -92,10 +113,77 @@ export class AdoptionService {
    */
   onQueryAllSpecies() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const requestUrl = 'http://localhost:8080/comment/species'
+    const requestUrl = 'http://localhost:8080/comment/species';
     return this.http.get<speciesData>(requestUrl, { headers });
   }
 
+  onQueryAllUser() {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestUrl = 'http://localhost:8080/users';
+    type ApiResponse = Users | ReturnStatus;
+    return this.http.get<ApiResponse>(requestUrl, { headers });
+  }
+  onQueryUserByUserId(userId: number) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestUrl = `http://localhost:8080/users?userId=${userId}`;
+    type ApiResponse = OneUser | ReturnStatus;
+    return this.http.get<ApiResponse>(requestUrl, { headers });
+  }
+  onQueryUsersByGoogleAccount(googleAccount: string) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestUrl = `http://localhost:8080/users?googleAccount=${googleAccount}`;
+    type ApiResponse = Users | ReturnStatus;
+    return this.http.get<ApiResponse>(requestUrl, { headers });
+  }
+
+  onPutUserStatusOn(userId: number) {
+    const userStatus: UserStatus = {
+      status: 'Y',
+    };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestUrl = `http://localhost:8080/users/status?userId=${userId}`;
+    return this.http.put<actionStatus>(requestUrl, userStatus, { headers });
+  }
+
+  onPutUserStatusOff(userId: number) {
+    const userStatus: UserStatus = {
+      status: 'N',
+    };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestUrl = `http://localhost:8080/users/status?userId=${userId}`;
+    return this.http.put<actionStatus>(requestUrl, userStatus, { headers });
+  }
+
+  onGetUserSubscription(userId: number) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestUrl = `http://localhost:8080/users/subscription?userId=${userId}`;
+    type ApiResponse = MinimalistAnimalList | ReturnStatus;
+    return this.http.get< ApiResponse>(requestUrl, { headers });
+  }
+  UserSubscription(userId: number, id: number) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestUrl = `http://localhost:8080/users/subscription`;
+    const userSubscription: SubscriptionDetail = {
+      userId: userId,
+      id: id,
+    };
+    return this.http.put<ReturnStatus>(requestUrl, userSubscription, {
+      headers,
+    });
+  }
+  UserUnsubscription(userId: number, id: number) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const requestUrl = `http://localhost:8080/users/unsubscription`;
+    const userSubscription: SubscriptionDetail = {
+      userId: userId,
+      id: id,
+    };
+    return this.http.put<ReturnStatus>(requestUrl, userSubscription, {
+      headers,
+    });
+
+
+  }
   /**
    * 若任合需要登入的尚未使用的服務則使用該函數
    */
@@ -111,9 +199,8 @@ export class AdoptionService {
     }
   }
   savaJwtwithStorge(jwtToken: string) {
-    const decodedToken=this.decodeFormJwt(jwtToken)
-    if (decodedToken ) {
-
+    const decodedToken = this.decodeFormJwt(jwtToken);
+    if (decodedToken) {
       localStorage.setItem('mail', decodedToken.sub);
       console.log(localStorage.getItem('mail'));
       localStorage.setItem('role', decodedToken.role);
@@ -124,8 +211,4 @@ export class AdoptionService {
       console.log(localStorage.getItem('name'));
     }
   }
-
 }
-
-
-
