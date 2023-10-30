@@ -32,7 +32,6 @@
       </div>
     </div>
     <div class="CardContainer"  >
-      <!-- 跳轉的路徑尚未寫上去-->
       <div class="Card"  *ngFor="let pet of displayRankAnimals" (click)="cardClicked(pet.id)" >
         <img class="PetImage" src="data:image/png;base64,{{pet.photo}}" />
         <div class="PetDetails">

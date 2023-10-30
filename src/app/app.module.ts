@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonPageComponent } from './components/common-page/common-page.component';
@@ -18,9 +18,7 @@ import { AdminPostPageComponent } from './components/admin/admin-post-page/admin
 import { AdminMessagePageComponent } from './components/admin/admin-message-page/admin-message-page.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { DetailPageComponent } from './components/detail-page/detail-page.component';
-
-
-
+import { JwtInterceptor } from './JwtInterceptor';
 
 
 
@@ -48,7 +46,7 @@ import { DetailPageComponent } from './components/detail-page/detail-page.compon
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

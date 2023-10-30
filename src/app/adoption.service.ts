@@ -1,15 +1,15 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { actionStatus, animals, cityData, simpleAnimals, speciesData } from './adpotion-model';
+import { DecodedToken, User, actionStatus, animals, cityData, simpleAnimals, speciesData } from './adpotion-model';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-
+import {jwtDecode} from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
 export class AdoptionService {
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
 
   /**
@@ -47,7 +47,7 @@ export class AdoptionService {
    * 透過寵物Idt查詢寵物細節資料
    * @returns animals
    */
-  onQueryAnimalById(animalId :number) {
+  onQueryAnimalById(animalId: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const requestUrl = `http://localhost:8080/adoptions?animalId=${animalId}`
     return this.http.get<animals>(requestUrl, { headers });
@@ -64,12 +64,12 @@ export class AdoptionService {
   onQueryConditionalAnimal(cityId?: string, sex?: string, speciesId?: string) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let queryParams = [];
-    if (cityId) {queryParams.push(`cityId=${cityId}`)}
-    else{queryParams.push(`cityId`)}
-    if (sex) {queryParams.push(`sex=${sex}`)}
-    else{queryParams.push(`sex`)}
-    if (speciesId) {queryParams.push(`speciesId=${speciesId}`)}
-    else{queryParams.push(`speciesId`)}
+    if (cityId) { queryParams.push(`cityId=${cityId}`) }
+    else { queryParams.push(`cityId`) }
+    if (sex) { queryParams.push(`sex=${sex}`) }
+    else { queryParams.push(`sex`) }
+    if (speciesId) { queryParams.push(`speciesId=${speciesId}`) }
+    else { queryParams.push(`speciesId`) }
 
     const queryString = queryParams.join('&');
     const requestUrl = `http://localhost:8080/adoptions?${queryString}`;
@@ -101,4 +101,30 @@ export class AdoptionService {
   navigateToLogin(): void {
     this.router.navigate(['/login']);
   }
+
+  decodeFormJwt(jwtToken: string) {
+    try {
+      return jwtDecode(jwtToken) as unknown as DecodedToken;
+    } catch (Error) {
+      return null;
+    }
+  }
+  savaJwtwithStorge(jwtToken: string) {
+    const decodedToken=this.decodeFormJwt(jwtToken)
+    if (decodedToken ) {
+
+      localStorage.setItem('mail', decodedToken.sub);
+      console.log(localStorage.getItem('mail'));
+      localStorage.setItem('role', decodedToken.role);
+      console.log(localStorage.getItem('role'));
+      localStorage.setItem('userId', decodedToken.userId.toString());
+      console.log(localStorage.getItem('userId'));
+      localStorage.setItem('name', decodedToken.realname);
+      console.log(localStorage.getItem('name'));
+    }
+  }
+
 }
+
+
+

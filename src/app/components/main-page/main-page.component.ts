@@ -3,7 +3,6 @@ import { simpleAnimal } from './../../adpotion-model';
 import { AdoptionService } from './../../adoption.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-main-page',
@@ -21,29 +20,26 @@ export class MainPageComponent implements OnInit {
     private adoptionService: AdoptionService,
     private router: Router,
     private route: ActivatedRoute,
-    private jwtHelper: JwtHelperService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.adoptionService.onQueryRankCtr().subscribe((res) => {
       this.displayRankAnimals = res.animal;
     });
+    console.log(this.displayRankAnimals)
     //取得token
     this.route.queryParams.subscribe((params) => {
       const token = params['token'];
 
       if (token) {
         console.log('JWT Token: ', token);
-        // 保存token(可以的話應該要做一個dialog"成功登入")
         localStorage.setItem('jwtToken', token);
-        const decodedToken = this.jwtHelper.decodeToken(token);
-        //儲存User訊息
-        localStorage.setItem('userInfo', JSON.stringify({
-          email: decodedToken.sub,
-          role: decodedToken.role,
-          userId: decodedToken.userId,
-          realname: decodedToken.realname
-        }));
+        console.log(localStorage.getItem('jwtToken'));
+
+        console.log('decode'+this.adoptionService.decodeFormJwt(token))
+        //儲存相關資訊
+        this.adoptionService.savaJwtwithStorge(token);
+        console.log('mail'+ localStorage.getItem('mail'));
       }
     });
   }

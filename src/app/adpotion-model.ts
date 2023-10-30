@@ -87,3 +87,22 @@ export interface animals {
 }
 
 
+//JWT自訂
+
+export interface User{
+  sub: string;
+  role: string;
+  exp: number;
+  userId: number;
+  iat: number;
+  realname: string;
+}
+
+export interface DecodedToken {
+  sub: string;
+  role: string;
+  exp: number;
+  userId: number;
+  iat: number;
+  realname: string;
+}

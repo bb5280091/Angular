@@ -33,13 +33,15 @@ const routes: Routes = [
   },
   {
     path: 'form',
-    component: FormPageComponent
+    component: FormPageComponent,
+    canActivate: [authGuard],
+    data: { roles: [ 'USER','ADMIN'] } ,
   },
   {
     path: 'member',
     component: MemberPageComponent,
     canActivate: [authGuard],
-    data: { roles: [ 'USER'] } ,
+    data: { roles: [ 'USER','ADMIN'] } ,
     children: [
       {
         path: 'info',
