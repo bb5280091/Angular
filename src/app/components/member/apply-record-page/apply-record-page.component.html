@@ -12,12 +12,12 @@
     </div>
     <tbody>
       <!-- 要遍歷 -->
-      <div class="tableBody">
+      <div class="tableBody" *ngFor="let animal of dispalyAnimal ; let i = index">
         <tr>
-          <td>1</td>
-          <td>阿金</td>
-          <td>❤️</td>
-          <td><button>取消</button></td>
+          <td>{{i+1}}</td>
+          <td>{{animal.name}}</td>
+          <td> <button (click)="navigateToYourPath(animal.id)">❤️</button></td>
+          <td><button (click)="unsubscription(animal.id)">取消</button></td>
         </tr>
       </div>
     </tbody>
