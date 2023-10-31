@@ -10,7 +10,7 @@ import { ChatMessage } from '../../interfaces/ChatMessage';
 })
 export class AdminMessagePageComponent {
   constructor(private service: AdoptService, private router: Router) { }
-  userId = 3;
+  userId = Number(localStorage.getItem('userId'));
   messageList: ChatMessage[] = []
 
   ngOnInit() {
@@ -22,6 +22,6 @@ export class AdminMessagePageComponent {
 
   messageClicked(id: number) {
     console.log(id);//對方id
-    this.router.navigate(['/admin/chatroom'], { queryParams: { id: id } });
+    this.router.navigate(['/admin/chatroom'], { queryParams: { otherId: id } });
   }
 }

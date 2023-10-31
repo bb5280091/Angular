@@ -13,11 +13,9 @@ import { PetFormModel } from '../../interfaces/pet.interface';
 export class PetgivingRecordPageComponent {
   cityList: any;
   speciesList: any;
-  userId = 1;
   petList: PetFormModel[] = [];
   showDetails = false;
   selectedPetId = 0;
-  petPhoto: string | undefined;
   modifyInfoList: PetFormModel[] = [];
   selectedFile!: string | null;
 
@@ -50,8 +48,7 @@ export class PetgivingRecordPageComponent {
       this.speciesList = response.data;
     });
     //show petgiving record
-    //看要怎樣傳入id，可能登入之後做查詢存在service之後方便使用
-    this.service.showPetGivingRecord(this.userId).subscribe(response => {
+    this.service.showPetGivingRecord(Number(localStorage.getItem('userId'))).subscribe(response => {
       console.log(response.response), this.petList = response.response
     });
   }
@@ -65,6 +62,7 @@ export class PetgivingRecordPageComponent {
       if (petName !== undefined) {
         console.log(petName);
         this.service.deletePetInfo(this.selectedPetId).subscribe(response => {
+          console.log(response);
           if (response.statusCode === '0000') {
             this.dialog.open(DialogComponent, {
               data: { dialogMode: 'deleteSuccessDialog' }
@@ -112,8 +110,7 @@ export class PetgivingRecordPageComponent {
         conditionFollowUp: formData.followUp === true ? 'Y' : 'N',
         conditionAgeLimit: formData.ageLimit === true ? 'Y' : 'N',
         conditionParentalPermission: formData.parentalPermission === true ? 'Y' : 'N',
-        //先預設userId = 2
-        userId: this.userId
+        userId: Number(localStorage.getItem('userId'))
       };
       console.log(this.form);
       console.log(petData);
@@ -135,7 +132,7 @@ export class PetgivingRecordPageComponent {
   }
 
   refresh() {
-    this.service.showPetGivingRecord(this.userId).subscribe(response => {
+    this.service.showPetGivingRecord(Number(localStorage.getItem('userId'))).subscribe(response => {
       console.log(response.response), this.petList = response.response
     });
     this.modifyInfoList = [];
