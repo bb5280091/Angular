@@ -31,64 +31,24 @@
         <div class="TopPets">點擊率前三寵物</div>
       </div>
     </div>
-    <div class="CardContainer">
-      <!-- 這裡將前三遍歷上去 -->
-      <div class="Card">
-        <img class="PetImage" src="assets\images\黃金獵犬.jpg" />
+    <div class="CardContainer"  >
+      <div class="Card"  *ngFor="let pet of displayRankAnimals" (click)="cardClicked(pet.id)" >
+        <img class="PetImage" src="data:image/png;base64,{{pet.photo}}" />
         <div class="PetDetails">
           <img class="MapMarker" src="assets\images\map-marker.png" />
-          <span class="Location">台中市</span>
+          <span class="Location">{{pet.cityName}}</span>
           <img class="paw" src="assets\images\paw.png" />
-          <span class="PetType">狗</span>
+          <span class="PetType">{{pet.speciesName}}</span>
           <img class="couple" src="assets\images\couple.png" />
-          <span class="Gender">公</span>
+          <span class="Gender">{{ pet.sex === 'F' ? '母' : pet.sex === 'M' ? '公' : '' }}</span>
         </div>
-        <div class="PetName">阿金</div>
-        <div class="PetDescription">需要大量散步，個性親人活潑</div>
+        <div class="PetName">{{pet.name}}</div>
+        <div class="PetDescription">{{pet.introduction}}</div>
         <div class="Requirements">
-          <div class="AgeRequirement">需年滿20歲</div>
-          <div class="TrackingRequirement">需接受後續追蹤</div>
-          <div class="FamilyApprovalRequirement">需家人同意</div>
-          <div class="AgreementRequirement">需簽署養切結書</div>
-        </div>
-      </div>
-      <div class="Card">
-        <img class="PetImage" src="assets\images\貓貓.jpg" />
-        <div class="PetDetails">
-          <img class="MapMarker" src="assets\images\map-marker.png" />
-          <span class="Location">台南市</span>
-          <img class="paw" src="assets\images\paw.png" />
-          <span class="PetType">貓</span>
-          <img class="couple" src="assets\images\couple.png" />
-          <span class="Gender">母</span>
-        </div>
-        <div class="PetName">小咪</div>
-        <div class="PetDescription">喜歡乾食，不行與其他寵物一起養</div>
-
-        <div class="Requirements">
-          <div class="AgeRequirement">需年滿20歲</div>
-          <div class="TrackingRequirement">需接受後續追蹤</div>
-          <div class="FamilyApprovalRequirement">需家人同意</div>
-          <div class="AgreementRequirement">需簽署養切結書</div>
-        </div>
-      </div>
-      <div class="Card">
-        <img class="PetImage" src="assets\images\狗狗.jpg" />
-        <div class="PetDetails">
-          <img class="MapMarker" src="assets\images\map-marker.png" />
-          <span class="Location">高雄市</span>
-          <img class="paw" src="assets\images\paw.png" />
-          <span class="PetType">狗</span>
-          <img class="couple" src="assets\images\couple.png" />
-          <span class="Gender">母</span>
-        </div>
-        <div class="PetName">格格</div>
-        <div class="PetDescription">天生有疾病，需要定期去醫院檢查</div>
-        <div class="Requirements">
-          <div class="AgeRequirement">需年滿20歲</div>
-          <div class="TrackingRequirement">需接受後續追蹤</div>
-          <div class="FamilyApprovalRequirement">需家人同意</div>
-          <div class="AgreementRequirement">需簽署養切結書</div>
+          <div class="AgeRequirement" [ngStyle]="{'color': pet.conditionAgeLimit === 'Y' ? '#D14747' : '#DFD2D2'}">需年滿20歲</div>
+          <div class="TrackingRequirement" [ngStyle]="{'color': pet.conditionFollowup === 'Y' ? '#D14747' : '#DFD2D2'}">需接受後續追蹤</div>
+          <div class="FamilyApprovalRequirement" [ngStyle]="{'color': pet. conditionParentalPermission === 'Y' ? '#D14747' : '#DFD2D2'}">需家人同意</div>
+          <div class="AgreementRequirement" [ngStyle]="{'color': pet. conditionAffidavit === 'Y' ? '#D14747' : '#DFD2D2'}">需簽署養切結書</div>
         </div>
       </div>
     </div>

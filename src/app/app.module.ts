@@ -1,11 +1,11 @@
-import { HttpClientModule } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminMessagePageComponent } from './components/admin/admin-message-page/admin-message-page.component';
 import { AdminPageComponent } from './components/admin/admin-page/admin-page.component';
 import { AdminPostPageComponent } from './components/admin/admin-post-page/admin-post-page.component';
 import { CommonPageComponent } from './components/common-page/common-page.component';
@@ -21,6 +21,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatRoomPageComponent } from './components/chat-room-page/chat-room-page.component';
 import { DatePipe } from '@angular/common';
+import { AdminMessagePageComponent } from './components/admin/admin-message-page/admin-message-page.component';
+import { SearchPageComponent } from './components/search-page/search-page.component';
+import { DetailPageComponent } from './components/detail-page/detail-page.component';
+import { JwtInterceptor } from './JwtInterceptor';
 
 
 @NgModule({
@@ -38,8 +42,11 @@ import { DatePipe } from '@angular/common';
     AdminPageComponent,
     AdminPostPageComponent,
     AdminMessagePageComponent,
+    SearchPageComponent,
+    DetailPageComponent,
     ChatRoomPageComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,7 +56,9 @@ import { DatePipe } from '@angular/common';
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

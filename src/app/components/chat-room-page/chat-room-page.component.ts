@@ -15,7 +15,7 @@ export class ChatRoomPageComponent implements OnInit {
   stompClient!: Stomp.Client;
   messages: ChatMessage[] = [];
   message: string = '';
-  myId = 3;
+  myId = Number(localStorage.getItem('userId'));
   otherId = 0;
   name = ''
 
@@ -24,14 +24,19 @@ export class ChatRoomPageComponent implements OnInit {
   ngOnInit(): void {
     this.initializeWebSocketConnection();
     this.route.queryParams.subscribe(param => {
-      console.log(+param['id']);
-      this.otherId = +param['id'];
       //接收對方id去查詢聊天紀錄然後放上來
+      console.log(+param['otherId']);
+      this.otherId = +param['otherId'];
+      this.service.showUserInfo(this.otherId).subscribe(response => {
+        console.log(response);
+        this.name = response.users.name
+      })
     });
     this.service.showChatroomMessages(this.myId, this.otherId).subscribe(response => {
-      console.log(response);
-      this.messages = response.response;
-      this.name = response.response[0].name;
+      if (response.response.length !== 0) {
+        console.log(response);
+        this.messages = response.response;
+      }
     })
   }
 
@@ -69,8 +74,4 @@ export class ChatRoomPageComponent implements OnInit {
     }
   }
 
-  setId() {
-    this.myId = parseInt((document.getElementById("myId") as HTMLInputElement).value);
-    console.log(this.myId);
-  }
 }

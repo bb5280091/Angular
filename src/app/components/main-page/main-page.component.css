@@ -162,6 +162,7 @@
   align-items: center;
   gap: 5%;
   display: inline-flex;
+  flex-direction : row ;
 }
 
 .Card {
@@ -169,6 +170,7 @@
   padding-top: 20px;
   box-shadow: 0px 4px 60px rgba(0, 52.49, 100.94, 0.25);
   border-radius: 42px;
+  box-sizing: border-box;
   justify-content: flex-start;
   flex-direction: column;
   display: flex;
@@ -260,26 +262,23 @@
   text-align: center;
 }
 
+
 .AgeRequirement {
   right: 30px;
   top: 0px;
-  color: #D14747;
 }
 
 .TrackingRequirement {
   left: 0;
   top: 37px;
-  color: #DFD2D2;
 }
 
 .FamilyApprovalRequirement {
   right: 30px;
   top: 37px;
-  color: #D14747;
 }
 
 .AgreementRequirement {
   left: 0px;
   top: 0px;
-  color: #D14747;
 }

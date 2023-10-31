@@ -45,8 +45,7 @@ export class AdoptService {
         "photo":
           list[0].photo
         ,
-        //這個先設1要抓登入的人id是什麼
-        "userId": 1
+        "userId":  Number(localStorage.getItem('userId'))
       }
     }
     return this.http.post<any>(this.url + "/adoptions", postData);
@@ -134,6 +133,16 @@ export class AdoptService {
   //查詢一對一的聊天紀錄
   showChatroomMessages(userId: number, otherId: number) {
     return this.http.get<any>(this.url + "/messages", { params: { userId: userId, otherId: otherId } });
+  }
+
+   //查詢留言
+   showDiscussionMessages(animalId: number) {
+    return this.http.get<any>(this.url + "/discussion", { params: { animalId: animalId } });
+  }
+
+   //查詢留言
+   showReplyDiscussionMessages(animalId: number) {
+    return this.http.get<any>(this.url + "/discussionReply", { params: { animalId: animalId } });
   }
 
 }

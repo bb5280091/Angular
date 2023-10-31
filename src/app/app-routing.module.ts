@@ -14,6 +14,8 @@ import { MessagePageComponent } from './components/member/message-page/message-p
 import { PetgivingRecordPageComponent } from './components/member/petgiving-record-page/petgiving-record-page.component';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { ChatRoomPageComponent } from './components/chat-room-page/chat-room-page.component';
+import { DetailPageComponent } from './components/detail-page/detail-page.component';
+import { authGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
@@ -22,17 +24,26 @@ const routes: Routes = [
     component: MainPageComponent
   },
   {
+    path: 'detail',
+    component: DetailPageComponent
+  }
+  ,
+  {
     path: 'search',
     component: SearchPageComponent
   },
   {
     path: 'form',
-    component: FormPageComponent
+    component: FormPageComponent,
+    canActivate: [authGuard],
+    data: { roles: [ 'USER','ADMIN'] } ,
   },
   {
     path: 'member',
     component: MemberPageComponent,
-    children:[
+    canActivate: [authGuard],
+    data: { roles: [ 'USER','ADMIN'] } ,
+    children: [
       {
         path: 'info',
         component: MemberInfoPageComponent
@@ -62,7 +73,9 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent,
-    children:[
+    canActivate: [authGuard],
+    data: { roles: [ 'ADMIN'] } ,
+    children: [
       {
         path: 'post',
         component: AdminPostPageComponent

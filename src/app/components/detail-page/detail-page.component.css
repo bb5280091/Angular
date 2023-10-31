@@ -1,0 +1,267 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.DetailContainer {
+  width: 100%;
+  height: 400%;
+  background: white;
+  box-shadow: 0px 4px 60px rgba(0, 52.49, 100.94, 0.25);
+  border-radius: 42px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  display: inline-flex;
+  padding: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.PetImage {
+  width: 600px;
+  height: 450px;
+  background: linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%);
+  border-radius: 24px
+}
+
+.MoreAboutMeTitel {
+  width: 637px;
+  height: 72px;
+  left: 0px;
+  top: 20px;
+  position: absolute;
+  color: #880000;
+  font-size: 35px;
+  font-family: Inter;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.MoreAboutMeContent {
+  width: 447px;
+  left: 0px;
+  top: 62px;
+  position: absolute;
+  color: #5E5E5E;
+  font-size: 30px;
+  font-family: Inter;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.AboutMeTitel {
+  color: #1E1E1E;
+  font-size: 60px;
+  font-family: Inter;
+  font-weight: 700;
+  margin-top: 20px;
+  word-wrap: break-word
+}
+
+.AboutMeContent {
+  margin-top: 20px;
+  width: 309px;
+  height: 354px;
+  color: #1E1E1E;
+  font-size: 25px;
+  font-family: Inter;
+  font-weight: 600;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.AgeRequirement {
+  left: 0px;
+  top: 44px;
+  position: absolute;
+  color: #D14747;
+  font-size: 25px;
+  font-family: Inter;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.TrackingRequirement {
+  left: 211px;
+  top: 3px;
+  position: absolute;
+  color: #DFD2D2;
+  font-size: 25px;
+  font-family: Inter;
+  font-weight: 700;
+  word-wrap: break-word
+}
+
+.FamilyApprovalRequirement {
+  left: 211px;
+  top: 47px;
+  position: absolute;
+  color: #DFD2D2;
+  font-size: 25px;
+  font-family: Inter;
+  font-weight: 700;
+  word-wrap: break-word
+}
+
+.AgreementRequirement {
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  color: #D14747;
+  font-size: 25px;
+  font-family: Inter;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.ButtonFlex {
+  width: 140px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  margin: 20px;
+}
+
+.Button {
+  height: 60px;
+  background: #FFF175;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  border: 1px rgba(221, 143.65, 143.65, 0.20) solid;
+  display: flex;
+  align-items: center;
+}
+
+.ButtomImgDiv {
+  padding-left: 3px;
+  padding-right: 0.13px;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+
+.ButtonImg {
+  width: 20.87px;
+  height: 20px;
+}
+
+.ButtonText {
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  font-family: Inter;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.DialogBoxContainer {
+  width: 100%;
+  height: 70%;
+  position: relative;
+  background: #FEFEFE;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.DialogResponse {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 80px;
+  margin-top: 20px;
+}
+
+.UserName {
+  left: 36px;
+  top: 0px;
+  position: absolute;
+  color: #333333;
+  font-size: 20px;
+  font-family: Poppins;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.ResponseText {
+  width: 324px;
+  height: 49px;
+  left: 36px;
+  top: 26px;
+  position: absolute;
+  color: #4F4F4F;
+  font-size: 18px;
+  font-family: Poppins;
+  font-weight: 400;
+  word-wrap: break-word
+}
+
+.ResponseTime {
+  left: 36px;
+  top: 60px;
+  position: absolute;
+  color: #828282;
+  font-size: 15px;
+  font-family: Poppins;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.MessageInputContainer {
+  text-align: center;
+  margin-top: 20px;
+  align-content: center;
+  width: 100%;
+  height: 8%;
+}
+
+#MessageInputTextBox {
+  margin-right: 10px;
+  width: 80%;
+  height: 100%;
+  background: #FEFEFE;
+  border-radius: 4px;
+  border: 0.60px #E0E0E0 solid;
+  align-items: center;
+}
+
+.submitButton {
+  width: 79px;
+  height: 40px;
+  padding: 8px 16px;
+  background: #2F80ED;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  display: inline-flex;
+  color: white;
+}
+
+.Reply {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.ResponseTime span:hover {
+  cursor: pointer;
+  color: #2F80ED;
+}
+
+.DiscussionTitle{
+  margin-left: 20px;
+  margin-top: 30px;
+  font-size: 30px;
+  font-weight: 600;
+  color: rebeccapurple;
+  margin-bottom: 20px;
+}

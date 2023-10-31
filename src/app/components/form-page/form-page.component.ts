@@ -16,7 +16,7 @@ export class FormPageComponent {
   cityList: any;
   speciesList: any;
   createPetList: PetFormModel[] = [];
-  selectedFile!: string;
+  selectedFile!: string|undefined;
 
   form = this.formBuilder.group({
     name: ['', [Validators.required, Validators.pattern(/[\S]/)]],
@@ -69,9 +69,9 @@ export class FormPageComponent {
         conditionFollowUp: formData.followUp ? "Y" : "N",
         conditionAgeLimit: formData.ageLimit ? "Y" : "N",
         conditionParentalPermission: formData.parentalPermission ? "Y" : "N",
-        //先預設userId = 1
-        userId: 1
+        userId: Number(localStorage.getItem('userId'))
       };
+      console.log( Number(localStorage.getItem('userId')));
       console.log(petData);
       this.createPetList.push(petData);
       this.service.createPetInfo(this.createPetList).subscribe(response => {
@@ -120,6 +120,7 @@ export class FormPageComponent {
       ageLimit: '',
       parentalPermission: '',
     })
+    this.selectedFile = undefined;
     this.createPetList = [];
   }
 
@@ -129,8 +130,8 @@ export class FormPageComponent {
       this.selectedFile = await this.getBase64(file).then();
 
       console.log(this.selectedFile);
-      console.log(this.selectedFile.split(",")[1]);
-      this.selectedFile = this.selectedFile.split(",")[1];//將前綴(blob:)拿掉
+      console.log(this.selectedFile!.split(",")[1]);
+      this.selectedFile = this.selectedFile!.split(",")[1];//將前綴(blob:)拿掉
       console.log(this.selectedFile);
     }
   }

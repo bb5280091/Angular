@@ -12,7 +12,6 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./member-info-page.component.css']
 })
 export class MemberInfoPageComponent {
-  userId = 2;//給定一個數字做測試
   infoList: UserFormModel[] = [];
   modifyInfoList: UserFormModel[] = [];
 
@@ -26,7 +25,7 @@ export class MemberInfoPageComponent {
   ngOnInit() {
     //show user's info
     //看要怎樣傳入id，可能登入之後做查詢存在service之後方便使用
-    this.service.showUserInfo(this.userId).subscribe(response => { this.infoList.push(response.users), this.form.controls['name'].setValue(response.users.name), this.form.controls['mobile'].setValue(response.users.mobile) });
+    this.service.showUserInfo(Number(localStorage.getItem('userId'))).subscribe(response => { this.infoList.push(response.users), this.form.controls['name'].setValue(response.users.name), this.form.controls['mobile'].setValue(response.users.mobile) });
   }
 
   modifyInfo() {
@@ -48,7 +47,7 @@ export class MemberInfoPageComponent {
       this.modifyInfoList.push(userData);
       this.service.updateUserInfo(this.modifyInfoList).subscribe(response => {
         //更新成功dialog
-        if (response.statusCode === '0000') {
+        if (response.returnCode === '0000') {
           this.dialog.open(DialogComponent, {
             data: { dialogMode: 'updateSuccessDialog' }
           });
