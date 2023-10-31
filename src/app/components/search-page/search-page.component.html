@@ -65,4 +65,6 @@
       </div>
     </div>
   </form>
+  <mat-paginator [length]="this.totalAnimals" [pageSize]="6" aria-label="Select page" (page)="onPageChange($event)">
+  </mat-paginator>
 </body>

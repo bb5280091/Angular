@@ -25,6 +25,7 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { DetailPageComponent } from './components/detail-page/detail-page.component';
 import { JwtInterceptor } from './JwtInterceptor';
 import { AdminMemberPageComponent } from './components/admin/admin-member-page/admin-member-page.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AdminMemberPageComponent } from './components/admin/admin-member-page/a
     HttpClientModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
 

@@ -53,10 +53,10 @@ export class AdoptionService {
    * 查詢全部寵物資料
    * @returns animals
    */
-  onQueryAllAnimal() {
+  onQueryAllAnimal(page: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const requestUrl = 'http://localhost:8080/adoptions';
-    return this.http.get<animals>(requestUrl, { headers });
+    return this.http.get<animals>(requestUrl, { params: { page: page } });
   }
 
   /**
@@ -77,7 +77,7 @@ export class AdoptionService {
    * @param speciesId 寵物類別id
    * @returns animals
    */
-  onQueryConditionalAnimal(cityId?: string, sex?: string, speciesId?: string) {
+  onQueryConditionalAnimal(cityId?: string, sex?: string, speciesId?: string, page?: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let queryParams = [];
     if (cityId) {
@@ -95,6 +95,7 @@ export class AdoptionService {
     } else {
       queryParams.push(`speciesId`);
     }
+    queryParams.push(`page=${page}`);
 
     const queryString = queryParams.join('&');
     const requestUrl = `http://localhost:8080/adoptions?${queryString}`;
@@ -163,7 +164,7 @@ export class AdoptionService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const requestUrl = `http://localhost:8080/users/subscription?userId=${userId}`;
     type ApiResponse = MinimalistAnimalList | ReturnStatus;
-    return this.http.get< ApiResponse>(requestUrl, { headers });
+    return this.http.get<ApiResponse>(requestUrl, { headers });
   }
   UserSubscription(userId: number, id: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
