@@ -10,19 +10,26 @@ import { ChatMessage } from '../../interfaces/ChatMessage';
 })
 export class MessagePageComponent {
   constructor(private service: AdoptService, private router: Router) { }
-  userId = 3;
+  userId = Number(localStorage.getItem('userId'));
   messageList: ChatMessage[] = []
+  agentMessage = 0;
 
   ngOnInit() {
     this.service.showMessages(this.userId).subscribe(response => {
       console.log(response);
       this.messageList = response.response
     })
+    //與客服對話
+    this.service.showChatroomMessages(this.userId, 5).subscribe(response => {
+      console.log(response);
+      this.agentMessage = response.response.length;
+    }
+    )
   }
 
   messageClicked(id: number) {
     console.log(id);
-    this.router.navigate(['/member/chatroom'], { queryParams: { id: id } });
+    this.router.navigate(['/member/chatroom'], { queryParams: { otherId: id } });
   }
 
 }

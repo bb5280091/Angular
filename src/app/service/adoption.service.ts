@@ -11,7 +11,10 @@ export class AdoptionService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> laura
   /**
    * 搜尋前三名點擊的寵物資訊
    * @returns 裝有所有待送養的寵物list
