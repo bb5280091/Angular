@@ -16,10 +16,7 @@ body {
   padding: 20px;
   margin-top: 20px;
   flex-wrap: wrap;
-<<<<<<< HEAD
-  margin-top: 50px;
-=======
->>>>>>> e4b0e6cc805bd2fdb03076efe5fee0c8d1092c03
+
 }
 
 .PetImage {
@@ -65,17 +62,10 @@ word-wrap: break-word
 }
 
 .AboutMeContent {
-<<<<<<< HEAD
-  width: 100%; /* Adjust width to use the full container width */
-  max-width: 309px; /* Keep the max width to 309px or adjust based on your design */
-  height: auto; /* Let height adjust based on content */
-  margin-top: 20px; /* Add some space above the content */
-  padding: 10px; /* Add padding inside the content area */
-=======
+
   margin-top: 20px;
   width: 309px;
   height: 354px;
->>>>>>> e4b0e6cc805bd2fdb03076efe5fee0c8d1092c03
   color: #1E1E1E;
   font-size: 20px; /* Adjust font size if necessary */
   line-height: 1.5; /* Increase line height for better readability */

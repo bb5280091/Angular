@@ -24,17 +24,10 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root',
 })
 export class AdoptionService {
-<<<<<<< HEAD
-  constructor(private http: HttpClient, private router: Router) {}
-=======
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
-<<<<<<< HEAD
->>>>>>> e4b0e6cc805bd2fdb03076efe5fee0c8d1092c03
-
-=======
->>>>>>> laura
   /**
    * 搜尋前三名點擊的寵物資訊
    * @returns 裝有所有待送養的寵物list

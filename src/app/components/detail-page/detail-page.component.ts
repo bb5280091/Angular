@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdoptionService } from 'src/app/service/adoption.service';
-<<<<<<< HEAD
-import { animal } from 'src/app/adpotion-model';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
-=======
 import { animal, city, species } from 'src/app/adpotion-model';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,7 +10,6 @@ import { DatePipe } from '@angular/common';
 import { DiscussionMessage } from '../interfaces/DiscussionMessage';
 import { AdoptService } from 'src/app/service/adopt.service';
 
->>>>>>> e4b0e6cc805bd2fdb03076efe5fee0c8d1092c03
 
 @Component({
   selector: 'app-detail-page',
@@ -27,9 +21,7 @@ export class DetailPageComponent implements OnInit {
   stompClient!: Stomp.Client;
   displayAnimals!: animal;
   animalId!: number;
-<<<<<<< HEAD
-  constructor(private adoptionService: AdoptionService, private route: ActivatedRoute, private dialog:MatDialog) { }
-=======
+
   messages: DiscussionMessage[] = [];
   message: string = '';
   myId = Number(localStorage.getItem('userId'));
@@ -37,7 +29,6 @@ export class DetailPageComponent implements OnInit {
   speciesList!: species[];
 
   constructor(private adoptionService: AdoptionService, private adoptService: AdoptService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog, public datepipe: DatePipe) { }
->>>>>>> e4b0e6cc805bd2fdb03076efe5fee0c8d1092c03
   ngOnInit(): void {
     this.adoptService.showAllCity().subscribe(response => {
       console.log(response);
