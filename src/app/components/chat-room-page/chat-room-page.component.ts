@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { ChatMessage } from '../interfaces/ChatMessage';
-import { AdoptService } from 'src/app/service/adopt.service';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe, formatDate } from '@angular/common';
+import { AdoptService } from '../../service/adopt.service';
 
 @Component({
   selector: 'app-chat-room-page',
@@ -29,7 +29,7 @@ export class ChatRoomPageComponent implements OnInit {
       this.otherId = +param['otherId'];
       this.service.showUserInfo(this.otherId).subscribe(response => {
         console.log(response);
-        this.name = response.users.name
+        this.name = response.user.name
       })
     });
     this.service.showChatroomMessages(this.myId, this.otherId).subscribe(response => {

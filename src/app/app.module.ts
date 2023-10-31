@@ -26,6 +26,7 @@ import { DetailPageComponent } from './components/detail-page/detail-page.compon
 import { JwtInterceptor } from './JwtInterceptor';
 import { AdminMemberPageComponent } from './components/admin/admin-member-page/admin-member-page.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

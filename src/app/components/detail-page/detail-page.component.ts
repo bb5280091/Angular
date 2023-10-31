@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdoptionService } from 'src/app/service/adoption.service';
-import { animal, city, species } from 'src/app/adpotion-model';
+
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { DatePipe } from '@angular/common';
 import { DiscussionMessage } from '../interfaces/DiscussionMessage';
-import { AdoptService } from 'src/app/service/adopt.service';
+import { AdoptionService } from '../../service/adoption.service';
+import { AdoptService } from '../../service/adopt.service';
+import { animal, city, species } from '../../adpotion-model';
+
 
 
 @Component({

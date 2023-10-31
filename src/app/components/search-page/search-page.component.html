@@ -41,9 +41,11 @@
           <img class="PetImage" src="data:image/png;base64,{{pet.photo}}" />
           <div class="PetDetails">
             <img class="MapMarker" src="assets\images\map-marker.png" />
-            <span class="Location" *ngFor="let city of cityOptions" [hidden]="city.cityId!==pet.city">{{city.cityName}}</span>
+            <span class="Location" *ngFor="let city of cityOptions"
+              [hidden]="city.cityId!==pet.city">{{city.cityName}}</span>
             <img class="paw" src="assets\images\paw.png" />
-            <span class="PetType" *ngFor="let species of speciesOptions" [hidden]="species.speciesId!==pet.species">{{species.speciesName}}</span>
+            <span class="PetType" *ngFor="let species of speciesOptions"
+              [hidden]="species.speciesId!==pet.species">{{species.speciesName}}</span>
             <img class="couple" src="assets\images\couple.png" />
             <span class="Gender">{{ pet.sex === 'F' ? '母' : pet.sex === 'M' ? '公' : '' }}</span>
           </div>
