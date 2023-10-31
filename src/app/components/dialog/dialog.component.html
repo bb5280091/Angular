@@ -22,6 +22,18 @@
     </div>
   </ng-container>
 
+
+   <!-- 成功登出 -->
+   <ng-container *ngSwitchCase="'logoutSuccessDialog'">
+    <p mat-dialog-title>Success</p>
+    <div mat-dialog-content>
+      <span>登出成功</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
     <!-- 未登入跳窗 -->
     <ng-container *ngSwitchCase="'loginDialog'">
       <h1 mat-dialog-title>您尚未登入，是否幫您轉向登入頁面?</h1>
@@ -30,7 +42,9 @@
       </div>
       <div mat-dialog-actions>
         <button mat-button [mat-dialog-close]="">否</button>
-        <button mat-button [mat-dialog-close]="data.id" cdkFocusInitial>是</button>
+
+        <button mat-button (click)="navigateToLogin()">是</button>
+
       </div>
     </ng-container>
 
@@ -132,4 +146,24 @@
       <button mat-button [mat-dialog-close]="">關閉</button>
     </div>
   </ng-container>
+  <!-- 加入收藏成功 -->
+  <ng-container *ngSwitchCase="'addSubscriptionSuccess'">
+    <p mat-dialog-title>Success</p>
+    <div mat-dialog-content>
+      <span>加入收藏成功!</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+    <!--加入收藏失敗 -->
+    <ng-container *ngSwitchCase="'addSubscriptionFail'">
+      <p mat-dialog-title>Fail</p>
+      <div mat-dialog-content>
+        <span>已經加入收藏過了喔!喜歡趕快帶回家</span>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="">關閉</button>
+      </div>
+    </ng-container>
 </div>

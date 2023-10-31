@@ -5,6 +5,9 @@ import { simpleAnimal } from './../../adpotion-model';
 import { AdoptionService } from '../../service/adoption.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+
 
 
 @Component({
@@ -23,6 +26,7 @@ export class MainPageComponent implements OnInit {
     private adoptionService: AdoptionService,
     private router: Router,
     private route: ActivatedRoute,
+    private dialog :MatDialog ,
   ) { }
 
   ngOnInit(): void {
@@ -43,6 +47,7 @@ export class MainPageComponent implements OnInit {
         //儲存相關資訊
         this.adoptionService.savaJwtwithStorge(token);
         console.log('mail'+ localStorage.getItem('mail'));
+        this.loginInSuccess();
       }
     });
   }
@@ -55,4 +60,11 @@ export class MainPageComponent implements OnInit {
     });
     this.router.navigate(['/detail'], { queryParams: { animalId: animalId } });
   }
+
+loginInSuccess(){
+  this.dialog.open(DialogComponent, {
+    data: { dialogMode: 'loginSuccessDialog' }
+  })
+  this.router.navigate(['/'])
+}
 }

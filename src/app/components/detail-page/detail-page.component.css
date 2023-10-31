@@ -16,7 +16,7 @@ body {
   padding: 20px;
   margin: 0 auto;
   flex-wrap: wrap;
-
+  margin-top: 50px;
 }
 
 .PetImage {
@@ -49,6 +49,7 @@ body {
   font-family: Inter;
   font-weight: 400;
   word-wrap: break-word;
+  margin-top: 50px;
 }
 
 .AboutMeTitel {
@@ -60,15 +61,18 @@ body {
 }
 
 .AboutMeContent {
-  width: 309px;
-  height: 354px;
+  width: 100%; /* Adjust width to use the full container width */
+  max-width: 309px; /* Keep the max width to 309px or adjust based on your design */
+  height: auto; /* Let height adjust based on content */
+  margin-top: 20px; /* Add some space above the content */
+  padding: 10px; /* Add padding inside the content area */
   color: #1E1E1E;
-  font-size: 25px;
+  font-size: 20px; /* Adjust font size if necessary */
+  line-height: 1.5; /* Increase line height for better readability */
   font-family: Inter;
   font-weight: 600;
   word-wrap: break-word;
 }
-
 .AgeRequirement {
   left: 0px;
   top: 44px;
