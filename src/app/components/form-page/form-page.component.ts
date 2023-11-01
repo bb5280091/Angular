@@ -4,6 +4,7 @@ import { AdoptService } from 'src/app/service/adopt.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { PetFormModel } from '../interfaces/pet.interface';
+import { city, species } from '../../adpotion-model';
 
 @Component({
   selector: 'app-form-page',
@@ -13,8 +14,8 @@ import { PetFormModel } from '../interfaces/pet.interface';
 export class FormPageComponent {
 
   constructor(private formBuilder: FormBuilder, private service: AdoptService, public dialog: MatDialog) { }
-  cityList: any;
-  speciesList: any;
+  cityList!: city[];
+  speciesList!: species[];
   createPetList: PetFormModel[] = [];
   selectedFile!: string|undefined;
 
@@ -38,9 +39,7 @@ export class FormPageComponent {
 
   onSubmit() {
     console.log(this.form);
-    console.log(this.form.value);
     console.log(this.selectedFile);
-
     //輸入錯誤
     if (this.form.invalid) {
       this.dialog.open(DialogComponent, {
@@ -75,7 +74,6 @@ export class FormPageComponent {
       console.log(petData);
       this.createPetList.push(petData);
       this.service.createPetInfo(this.createPetList).subscribe(response => {
-        console.log(response);
         if (response.statusCode === '0000') {
           this.dialog.open(DialogComponent, {
             //新增成功dialog
@@ -128,9 +126,6 @@ export class FormPageComponent {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.selectedFile = await this.getBase64(file).then();
-
-      console.log(this.selectedFile);
-      console.log(this.selectedFile!.split(",")[1]);
       this.selectedFile = this.selectedFile!.split(",")[1];//將前綴(blob:)拿掉
       console.log(this.selectedFile);
     }

@@ -22,8 +22,9 @@
         毛色: {{displayAnimals.color}}<br />
         年紀: {{displayAnimals.age}}<br />
         是否結紮: {{ displayAnimals.ligation === 'Y' ? '已結紮' : displayAnimals.ligation === 'N' ? '尚未結紮' : '' }}<br />
-        刊登日期:**待更新後端**
+        刊登日期:{{ displayAnimals.publishDate}}
       </div>
+
 
       <div style="width: 400px; height: 77px; position: relative">
         <div class="AgeRequirement"
@@ -49,7 +50,7 @@
           <div class="ButtomImgDiv">
             <img class="ButtonImg" src="assets\images\heart.png" />
           </div>
-          <div class="ButtonText"> 我的收藏 </div>
+          <div class="ButtonText" (click)=" onSubscription()"> 我的收藏 </div>
         </button>
       </div>
     </div>

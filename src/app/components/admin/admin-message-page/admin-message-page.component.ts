@@ -21,7 +21,6 @@ export class AdminMessagePageComponent {
   }
 
   messageClicked(id: number) {
-    console.log(id);//對方id
     this.router.navigate(['/admin/chatroom'], { queryParams: { otherId: id } });
   }
 }

@@ -7,25 +7,17 @@
         <th>#</th>
         <th>寵物名稱</th>
         <th>寵物連結</th>
-        <th>申請日期</th>
+        <th>取消收藏</th>
       </thead>
     </div>
     <tbody>
       <!-- 要遍歷 -->
-      <div class="tableBody">
+      <div class="tableBody" *ngFor="let animal of dispalyAnimal ; let i = index">
         <tr>
-          <td>1</td>
-          <td>阿金</td>
-          <td>❤️</td>
-          <td>2023/10/17</td>
-        </tr>
-      </div>
-      <div class="tableBody">
-        <tr>
-          <td>2</td>
-          <td>阿金</td>
-          <td>❤️</td>
-          <td>2023/10/17</td>
+          <td>{{i+1}}</td>
+          <td>{{animal.name}}</td>
+          <td> <button (click)="navigateToYourPath(animal.id)">❤️</button></td>
+          <td><button (click)="unsubscription(animal.id)">取消</button></td>
         </tr>
       </div>
     </tbody>

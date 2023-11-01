@@ -18,13 +18,11 @@
     </div>
     <tbody>
       <div *ngFor="let pet of this.petList; let i=index;">
-        <!-- 要遍歷 -->
         <div class="tableBody">
           <tr>
             <td>{{i+1}}</td>
             <td>{{pet.id}}</td>
             <td>{{pet.userId}}</td>
-            <!-- 新增的 -->
             <td>{{pet.postStatus}}</td>
             <td>{{pet.publishDate}}</td>
             <td><input type="radio" name="petSelected" (click)="selectPet([pet])"></td>
@@ -81,4 +79,8 @@
       </div>
     </tbody>
   </table>
+  <div [hidden]="this.hidePaginator===true">
+  <mat-paginator [length]="this.totalAnimals" [pageSize]="6" aria-label="Select page"
+    (page)="onPageChange($event)">
+  </mat-paginator></div>
 </div>

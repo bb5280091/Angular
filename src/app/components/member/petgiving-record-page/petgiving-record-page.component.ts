@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AdoptService } from 'src/app/service/adopt.service';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { PetFormModel } from '../../interfaces/pet.interface';
+import { city, species } from '../../../adpotion-model';
 
 @Component({
   selector: 'app-petgiving-record-page',
@@ -11,8 +12,8 @@ import { PetFormModel } from '../../interfaces/pet.interface';
   styleUrls: ['./petgiving-record-page.component.css']
 })
 export class PetgivingRecordPageComponent {
-  cityList: any;
-  speciesList: any;
+  cityList!: city[];
+  speciesList!: species[];
   petList: PetFormModel[] = [];
   showDetails = false;
   selectedPetId = 0;
@@ -49,7 +50,8 @@ export class PetgivingRecordPageComponent {
     });
     //show petgiving record
     this.service.showPetGivingRecord(Number(localStorage.getItem('userId'))).subscribe(response => {
-      console.log(response.response), this.petList = response.response
+      console.log(response.response);
+      this.petList = response.response;
     });
   }
 
@@ -75,14 +77,11 @@ export class PetgivingRecordPageComponent {
             });
           }
         });
-
       }
     });
-
   }
 
   modifyPetInfo() {
-    console.log(this.form.value);
     console.log(this.form);
     if (this.form.invalid) {
       this.dialog.open(DialogComponent, {
@@ -133,7 +132,8 @@ export class PetgivingRecordPageComponent {
 
   refresh() {
     this.service.showPetGivingRecord(Number(localStorage.getItem('userId'))).subscribe(response => {
-      console.log(response.response), this.petList = response.response
+      console.log(response.response);
+      this.petList = response.response;
     });
     this.modifyInfoList = [];
     this.selectedPetId = 0;
@@ -170,8 +170,6 @@ export class PetgivingRecordPageComponent {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.selectedFile = await this.getBase64(file).then();
-      console.log(this.selectedFile);
-      console.log(this.selectedFile!.split(",")[1]);
       this.selectedFile = this.selectedFile!.split(",")[1];//將前綴(blob:)拿掉
       console.log(this.selectedFile);
     }

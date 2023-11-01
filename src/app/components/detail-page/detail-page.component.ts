@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdoptionService } from 'src/app/service/adoption.service';
-import { animal, city, species } from 'src/app/adpotion-model';
+
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { DatePipe } from '@angular/common';
 import { DiscussionMessage } from '../interfaces/DiscussionMessage';
-import { AdoptService } from 'src/app/service/adopt.service';
+import { AdoptionService } from '../../service/adoption.service';
+import { AdoptService } from '../../service/adopt.service';
+import { animal, city, species } from '../../adpotion-model';
+
+
 
 @Component({
   selector: 'app-detail-page',
@@ -20,6 +23,7 @@ export class DetailPageComponent implements OnInit {
   stompClient!: Stomp.Client;
   displayAnimals!: animal;
   animalId!: number;
+
   messages: DiscussionMessage[] = [];
   message: string = '';
   myId = Number(localStorage.getItem('userId'));
@@ -72,13 +76,30 @@ export class DetailPageComponent implements OnInit {
     console.log('到這一步');
     console.log(this.stompClient);
     this.stompClient.connect({}, () => {
-      this.stompClient.subscribe('/topic/public', (message) => {//subsribe to the public topic
+      this.stompClient.subscribe('/topic/discuss/'+this.animalId, (message) => {//subsribe to the public topic
         if (message.body) {
           this.messages.push(JSON.parse(message.body));
         }
-
       });
     });
+  }
+  onSubscription(){
+if(localStorage.getItem('userId')){
+this.adoptionService. UserSubscription(Number(localStorage.getItem('userId')), this.animalId).subscribe((res)=>{
+console.log(res)
+  if(res.statusCode==='0000'){
+  console.log("訂閱成功")
+  this.dialog.open(DialogComponent, {
+    data: { dialogMode: 'addSubscriptionSuccess' }
+  })
+}else{
+  console.log("訂閱失敗")
+  this.dialog.open(DialogComponent, {
+    data: { dialogMode: 'addSubscriptionFail' }
+  })
+}
+})
+}
   }
 
   sendDiscussionMessage() {

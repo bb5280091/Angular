@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AdoptService } from 'src/app/service/adopt.service';
 import { UserFormModel } from '../../interfaces/user.interface';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AdoptService } from '../../../service/adopt.service';
 
 @Component({
   selector: 'app-member-info-page',
@@ -25,7 +25,11 @@ export class MemberInfoPageComponent {
   ngOnInit() {
     //show user's info
     //看要怎樣傳入id，可能登入之後做查詢存在service之後方便使用
-    this.service.showUserInfo(Number(localStorage.getItem('userId'))).subscribe(response => { this.infoList.push(response.users), this.form.controls['name'].setValue(response.users.name), this.form.controls['mobile'].setValue(response.users.mobile) });
+    this.service.showUserInfo(Number(localStorage.getItem('userId'))).subscribe(response => {
+      this.infoList.push(response.user);
+      this.form.controls['name'].setValue(response.user.name);
+      this.form.controls['mobile'].setValue(response.user.mobile);
+    });
   }
 
   modifyInfo() {
