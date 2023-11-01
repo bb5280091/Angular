@@ -24,7 +24,6 @@ export class MemberInfoPageComponent {
 
   ngOnInit() {
     //show user's info
-    //看要怎樣傳入id，可能登入之後做查詢存在service之後方便使用
     this.service.showUserInfo(Number(localStorage.getItem('userId'))).subscribe(response => {
       this.infoList.push(response.user);
       this.form.controls['name'].setValue(response.user.name);

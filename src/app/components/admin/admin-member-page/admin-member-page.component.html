@@ -2,45 +2,37 @@
   <p class="memberManagementTitle">會員管理</p>
   <div class="Line"></div>
   <form [formGroup]="selectForm" (submit)="onSubmit()">
-  <input type="radio" formControlName="selection" value="number"/>會員編號
-  <input type="radio" formControlName="selection" value="email" />會員信箱
-  <input type="text" formControlName="keyWord">
-  <button class="searchButton" type="submit">查詢</button>
-</form>
-<<<<<<< HEAD
-<form [formGroup]="displayForm"  >
-=======
-<form [formGroup]="displayForm" (submit)="onSubmit()">
->>>>>>> laura
-  <table>
-    <div class="tableTitle">
-      <thead>
-        <th>會員編號</th>
-        <th>會員信箱</th>
-        <th>狀態</th>
-        <th></th>
-      </thead>
-    </div>
-    <tbody>
-      <!-- 要遍歷 -->
-      <div class="tableBody" *ngFor="let user of displayUsers">
-        <tr>
-          <td>{{user.userId}}</td>
-          <td>{{user.googleAccount}}</td>
-          <td>{{ user.status === 'Y' ? '啟用中' : '已停權' }}</td>
-          <td><input type="radio" formControlName="userId" [value]="user.userId"></td>
-        </tr>
+    <input type="radio" formControlName="selection" value="number" />會員編號
+    <input type="radio" formControlName="selection" value="email" />會員信箱
+    <input type="text" formControlName="keyWord">
+    <button class="searchButton" type="submit">查詢</button>
+  </form>
+  <form [formGroup]="displayForm">
+    <table>
+      <div class="tableTitle">
+        <thead>
+          <th>會員編號</th>
+          <th>會員信箱</th>
+          <th>狀態</th>
+          <th></th>
+        </thead>
       </div>
-    </tbody>
-  </table>
-  <!-- 這裡的按鈕應該要有點選才出現，並出現在點選資料下方 -->
-<<<<<<< HEAD
-  <div class="buttonContainer"*ngIf="displayUsers && displayUsers.length > 0">
-=======
-  <div class="buttonContainer" *ngIf=" displayUsers">
->>>>>>> laura
-    <button (click)="putStatusOn()">帳號啟用</button>
-    <button (click)="putStatusOff()">帳號停權</button>
-  </div>
-</form>
+      <tbody>
+        <!-- 要遍歷 -->
+        <div class="tableBody" *ngFor="let user of displayUsers">
+          <tr>
+            <td>{{user.userId}}</td>
+            <td>{{user.googleAccount}}</td>
+            <td>{{ user.status === 'Y' ? '啟用中' : '已停權' }}</td>
+            <td><input type="radio" formControlName="userId" [value]="user.userId"></td>
+          </tr>
+        </div>
+      </tbody>
+    </table>
+    <!-- 這裡的按鈕應該要有點選才出現，並出現在點選資料下方 -->
+    <div class="buttonContainer" *ngIf="displayUsers && displayUsers.length > 0">
+      <button (click)="putStatusOn()">帳號啟用</button>
+      <button (click)="putStatusOff()">帳號停權</button>
+    </div>
+  </form>
 </div>
