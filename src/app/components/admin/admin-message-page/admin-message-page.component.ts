@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdoptService } from 'src/app/service/adopt.service';
 import { ChatMessage } from '../../interfaces/ChatMessage';
+import { AdoptService } from '../../../service/adopt.service';
 
 @Component({
   selector: 'app-admin-message-page',

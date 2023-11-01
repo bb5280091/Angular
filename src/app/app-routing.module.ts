@@ -45,6 +45,11 @@ const routes: Routes = [
     data: { roles: [ 'USER','ADMIN'] } ,
     children: [
       {
+        path: '',
+        redirectTo: 'info',
+        pathMatch: 'full'
+      },
+      {
         path: 'info',
         component: MemberInfoPageComponent
       },
@@ -76,6 +81,11 @@ const routes: Routes = [
     canActivate: [authGuard],
     data: { roles: [ 'ADMIN'] } ,
     children: [
+      {
+        path: '',
+        redirectTo: 'post',
+        pathMatch: 'full'
+      },
       {
         path: 'post',
         component: AdminPostPageComponent

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AdoptService } from 'src/app/service/adopt.service';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { PetFormModel } from '../../interfaces/pet.interface';
+import { AdoptService } from '../../../service/adopt.service';
 
 @Component({
   selector: 'app-petgiving-record-page',

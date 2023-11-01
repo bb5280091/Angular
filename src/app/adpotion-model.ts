@@ -42,6 +42,7 @@ export interface animal {
   photo: string;
   userId: number;
   pageNumber: number;
+  publishDate: string;
 }
 
 // species

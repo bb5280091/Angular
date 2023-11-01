@@ -1,13 +1,17 @@
 <body>
-  <div class="FrameContainer">
-    <!-- 點不同圓圈會更換不同圖片，有空再用xd -->
-    <img class="Frame" src="assets\images\布告欄.jpg" />
-    <div class="SlideDot">
-      <div class="Ellipse1"></div>
-      <div class="Ellipse2"></div>
-      <div class="Ellipse3"></div>
-    </div>
-  </div>
+  <div class="carousel-container">
+  <ngx-slick-carousel class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+  (init)="slickInit($event)"
+  (breakpoint)="breakpoint($event)"
+  (afterChange)="afterChange($event)"
+  (beforeChange)="beforeChange($event)">
+<div ngxSlickItem *ngFor="let slide of slides" class="slide">
+<img src="{{ slide.img }}" alt="" width="100%">
+</div>
+</ngx-slick-carousel>
+</div>
   <br>
   <div class="BenefitsContainer">
     <div class="BenefitsText">寵物領養的好處?</div>

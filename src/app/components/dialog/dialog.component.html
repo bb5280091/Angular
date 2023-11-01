@@ -33,6 +33,20 @@
     </div>
   </ng-container>
 
+<<<<<<< HEAD
+=======
+    <!-- 帳號被鎖 -->
+    <ng-container *ngSwitchCase="'accountDisable'">
+      <p mat-dialog-title>Warning</p>
+      <div mat-dialog-content>
+        <span>帳號被鎖，有任何疑問請私訊管理員</span>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="">關閉</button>
+      </div>
+    </ng-container>
+
+>>>>>>> origin/sebrina
 
    <!-- 成功登出 -->
    <ng-container *ngSwitchCase="'logoutSuccessDialog'">

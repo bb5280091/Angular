@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AdoptService } from 'src/app/service/adopt.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { PetFormModel } from '../interfaces/pet.interface';
+import { AdoptService } from '../../service/adopt.service';
 
 @Component({
   selector: 'app-form-page',

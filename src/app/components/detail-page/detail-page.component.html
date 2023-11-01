@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <body>
   <div class="DetailContainer">
     <div>
@@ -23,9 +24,38 @@
         年紀: {{displayAnimals.age}}<br />
         是否結紮: {{ displayAnimals.ligation === 'Y' ? '已結紮' : displayAnimals.ligation === 'N' ? '尚未結紮' : '' }}<br />
         刊登日期:**待更新後端**
+=======
+<div>
+  <body>
+    <div class="DetailContainer">
+      <div>
+        <img class="PetImage" src="data:image/png;base64,{{displayAnimals.photo}}" />
+        <div style="width: 637px; height: 91px; position: relative">
+          <div class="MoreAboutMeTitel">
+            更多關於我的事情:</div>
+          <div class="MoreAboutMeContent">
+            需要大量散步，個性親人活潑</div>
+        </div>
+>>>>>>> origin/sebrina
       </div>
+      <div>
+        <div class="AboutMeTitel">{{displayAnimals.name}}</div>
+        <div class="AboutMeContent">
+          <span *ngFor="let city of cityList" [hidden]="city.cityId!==displayAnimals.city">所在地:
+            {{city.cityName}}<br /></span>
+          <span *ngFor="let species of speciesList" [hidden]="species.speciesId!==displayAnimals.species">種類:
+            {{species.speciesName}}<br /></span>
+          品種:{{displayAnimals.type}}<br />
+          性別: {{ displayAnimals.sex === 'F' ? '母' : displayAnimals.sex === 'M' ? '公' : '' }}<br />
+          體型: {{displayAnimals.size}}<br />
+          毛色: {{displayAnimals.color}}<br />
+          年紀: {{displayAnimals.age}}<br />
+          是否結紮: {{ displayAnimals.ligation === 'Y' ? '已結紮' : displayAnimals.ligation === 'N' ? '尚未結紮' : '' }}<br />
+          刊登日期:{{ displayAnimals.publishDate}}
+        </div>
 
 
+<<<<<<< HEAD
       <div style="width: 400px; height: 77px; position: relative">
         <div class="AgeRequirement"
           [ngStyle]="{'color': displayAnimals.conditionAgeLimit === 'Y' ? '#D14747' : '#DFD2D2'}"> 需年滿20歲</div>
@@ -44,16 +74,61 @@
           <div class="ButtonText" (click)="sendMessage()">
             私訊了解</div>
         </button>
-      </div>
-      <div class="ButtonFlex">
-        <button class="Button">
-          <div class="ButtomImgDiv">
-            <img class="ButtonImg" src="assets\images\heart.png" />
+=======
+        <div style="width: 400px; height: 77px; position: relative">
+          <div class="AgeRequirement"
+            [ngStyle]="{'color': displayAnimals.conditionAgeLimit === 'Y' ? '#D14747' : '#DFD2D2'}"> 需年滿20歲</div>
+          <div class="TrackingRequirement"
+            [ngStyle]="{'color': displayAnimals.conditionFollowup === 'Y' ? '#D14747' : '#DFD2D2'}"> 需接受後續追蹤</div>
+          <div class="FamilyApprovalRequirement"
+            [ngStyle]="{'color': displayAnimals.conditionParentalPermission === 'Y' ? '#D14747' : '#DFD2D2'}"> 需家人同意
           </div>
-          <div class="ButtonText" (click)=" onSubscription()"> 我的收藏 </div>
-        </button>
+          <div class="AgreementRequirement"
+            [ngStyle]="{'color': displayAnimals.conditionAffidavit === 'Y' ? '#D14747' : '#DFD2D2'}"> 需簽署養切結書</div>
+        </div>
+        <div class="ButtonFlex">
+          <button class="Button">
+            <div class="ButtomImgDiv">
+              <img class="ButtonImg" src="assets\images\mail.png" />
+            </div>
+            <div class="ButtonText" (click)="sendMessage()">
+              私訊了解</div>
+          </button>
+        </div>
+        <div class="ButtonFlex">
+          <button class="Button">
+            <div class="ButtomImgDiv">
+              <img class="ButtonImg" src="assets\images\heart.png" />
+            </div>
+            <div class="ButtonText" (click)=" onSubscription()"> 我的收藏 </div>
+          </button>
+        </div>
+>>>>>>> origin/sebrina
+      </div>
+      <div class="DialogBoxContainer">
+        <div class="DiscussionTitle">留言板</div>
+        <div class="DialogResponse" *ngFor="let msg of messages">
+          <div *ngIf="msg.replyNo==0">
+            <div class="UserName"> {{msg.userId===this.displayAnimals.userId?'原PO':msg.name}}</div>
+            <div class="ResponseText"> {{ msg.content }}</div>
+            <div class="ResponseTime"> B{{msg.serialNo}} {{msg.timestamp}} <span
+                (click)="replyDiscussion(msg.serialNo)">回復</span></div>
+          </div>
+          <div class="Reply" *ngIf="msg.replyNo!==0">
+            <div class="UserName"> {{msg.userId===this.displayAnimals.userId?'原PO':msg.name}}</div>
+            <div class="ResponseText"> {{ msg.content }}</div>
+            <div class="ResponseTime"> B{{msg.serialNo}}-{{msg.replyNo}} {{msg.timestamp}} <span
+                (click)="replyReply(msg.serialNo,msg.replyNo)">回復</span></div>
+          </div>
+        </div>
+        <div class="MessageInputContainer">
+          <input id="MessageInputTextBox" type="text" placeholder="回覆此則留言" [(ngModel)]="message"
+            (keyup.enter)="sendDiscussionMessage()">
+          <button class="submitButton" (click)="sendDiscussionMessage()">送出 </button>
+        </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="DialogBoxContainer">
       <div class="DiscussionTitle">留言板</div>
       <div class="DialogResponse" *ngFor="let msg of messages">
@@ -78,3 +153,7 @@
     </div>
   </div>
 </body>
+=======
+  </body>
+</div>
+>>>>>>> origin/sebrina

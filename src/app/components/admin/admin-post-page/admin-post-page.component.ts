@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AdoptService } from 'src/app/service/adopt.service';
-import { PetFormModel } from '../../interfaces/pet.interface';
+import { AdoptService } from '../../../service/adopt.service';
 import { DialogComponent } from '../../dialog/dialog.component';
+import { PetFormModel } from '../../interfaces/pet.interface';
 
 @Component({
   selector: 'app-admin-post-page',
