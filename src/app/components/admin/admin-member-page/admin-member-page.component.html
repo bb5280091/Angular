@@ -7,7 +7,11 @@
   <input type="text" formControlName="keyWord">
   <button class="searchButton" type="submit">查詢</button>
 </form>
+<<<<<<< HEAD
 <form [formGroup]="displayForm"  >
+=======
+<form [formGroup]="displayForm" (submit)="onSubmit()">
+>>>>>>> laura
   <table>
     <div class="tableTitle">
       <thead>
@@ -30,7 +34,11 @@
     </tbody>
   </table>
   <!-- 這裡的按鈕應該要有點選才出現，並出現在點選資料下方 -->
+<<<<<<< HEAD
   <div class="buttonContainer"*ngIf="displayUsers && displayUsers.length > 0">
+=======
+  <div class="buttonContainer" *ngIf=" displayUsers">
+>>>>>>> laura
     <button (click)="putStatusOn()">帳號啟用</button>
     <button (click)="putStatusOff()">帳號停權</button>
   </div>

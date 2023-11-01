@@ -23,6 +23,7 @@
         毛色: {{displayAnimals.color}}<br />
         年紀: {{displayAnimals.age}}<br />
         是否結紮: {{ displayAnimals.ligation === 'Y' ? '已結紮' : displayAnimals.ligation === 'N' ? '尚未結紮' : '' }}<br />
+<<<<<<< HEAD
         刊登日期:**待更新後端**
 =======
 <div>
@@ -37,6 +38,9 @@
             需要大量散步，個性親人活潑</div>
         </div>
 >>>>>>> origin/sebrina
+=======
+        刊登日期:{{ displayAnimals.publishDate}}
+>>>>>>> laura
       </div>
       <div>
         <div class="AboutMeTitel">{{displayAnimals.name}}</div>
@@ -56,6 +60,9 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> laura
       <div style="width: 400px; height: 77px; position: relative">
         <div class="AgeRequirement"
           [ngStyle]="{'color': displayAnimals.conditionAgeLimit === 'Y' ? '#D14747' : '#DFD2D2'}"> 需年滿20歲</div>
@@ -83,6 +90,7 @@
           <div class="FamilyApprovalRequirement"
             [ngStyle]="{'color': displayAnimals.conditionParentalPermission === 'Y' ? '#D14747' : '#DFD2D2'}"> 需家人同意
           </div>
+<<<<<<< HEAD
           <div class="AgreementRequirement"
             [ngStyle]="{'color': displayAnimals.conditionAffidavit === 'Y' ? '#D14747' : '#DFD2D2'}"> 需簽署養切結書</div>
         </div>
@@ -126,6 +134,10 @@
             (keyup.enter)="sendDiscussionMessage()">
           <button class="submitButton" (click)="sendDiscussionMessage()">送出 </button>
         </div>
+=======
+          <div class="ButtonText" (click)=" onSubscription()"> 我的收藏 </div>
+        </button>
+>>>>>>> laura
       </div>
     </div>
 <<<<<<< HEAD

@@ -21,8 +21,8 @@ export class MainPageComponent implements OnInit {
     private adoptionService: AdoptionService,
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
     this.adoptionService.onQueryRankCtr().subscribe((res) => {
@@ -52,9 +52,9 @@ export class MainPageComponent implements OnInit {
     });
   }
   slides = [
-    {img: "assets/images/wp1.jpg"},
-    {img:"assets/images/wp2.jpg"},
-    {img: "assets/images/wp3.jpg"}
+    { img: "assets/images/wp1.jpg" },
+    { img: "assets/images/wp2.jpg" },
+    { img: "assets/images/wp3.jpg" }
   ];
   slideConfig = {
     slidesToShow: 1,
@@ -62,28 +62,28 @@ export class MainPageComponent implements OnInit {
     autoplay: true,
     autoplaySpeed: 1000,
     arrows: true
-};
+  };
   addSlide() {
-    this.slides.push({img: "http://placehold.it/350x150/777777"})
+    this.slides.push({ img: "http://placehold.it/350x150/777777" })
   }
 
   removeSlide() {
     this.slides.length = this.slides.length - 1;
   }
 
-  slickInit(e :any) {
+  slickInit(e: any) {
     console.log('slick initialized');
   }
 
-  breakpoint(e :any) {
+  breakpoint(e: any) {
     console.log('breakpoint');
   }
 
-  afterChange(e :any) {
+  afterChange(e: any) {
     console.log('afterChange');
   }
 
-  beforeChange(e :any) {
+  beforeChange(e: any) {
     console.log('beforeChange');
   }
 
@@ -100,8 +100,9 @@ export class MainPageComponent implements OnInit {
 
   loginInSuccess() {
     this.dialog.open(DialogComponent, {
-      data: { dialogMode: 'loginSuccessDialog' },
-    });
-    this.router.navigate(['/']);
+      data: { dialogMode: 'loginSuccessDialog' }
+    })
+    this.router.navigate(['/'])
   }
+
 }

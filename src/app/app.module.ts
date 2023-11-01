@@ -27,6 +27,7 @@ import { DetailPageComponent } from './components/detail-page/detail-page.compon
 import { JwtInterceptor } from './JwtInterceptor';
 import { AdminMemberPageComponent } from './components/admin/admin-member-page/admin-member-page.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+<<<<<<< HEAD
 =======
   import { NgModule } from '@angular/core';
   import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -80,6 +81,31 @@ import {MatPaginatorModule} from '@angular/material/paginator';
       AdminMemberPageComponent,
       ApplyRecordPageComponent
     ],
+=======
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    CommonPageComponent,
+    MainPageComponent,
+    FormPageComponent,
+    MemberPageComponent,
+    ApplyRecordPageComponent,
+    MemberInfoPageComponent,
+    PetgivingRecordPageComponent,
+    MessagePageComponent,
+    LoginPageComponent,
+    AdminPageComponent,
+    AdminPostPageComponent,
+    AdminMessagePageComponent,
+    SearchPageComponent,
+    DetailPageComponent,
+    ChatRoomPageComponent,
+    AdminMemberPageComponent,
+    ApplyRecordPageComponent
+  ],
+>>>>>>> laura
 
 <<<<<<< HEAD
   imports: [

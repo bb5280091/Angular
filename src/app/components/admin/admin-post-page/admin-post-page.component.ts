@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AdoptService } from '../../../service/adopt.service';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { PetFormModel } from '../../interfaces/pet.interface';
+import { PageEvent } from '@angular/material/paginator';
+import { city, species } from '../../../adpotion-model';
 
 @Component({
   selector: 'app-admin-post-page',
@@ -10,11 +12,14 @@ import { PetFormModel } from '../../interfaces/pet.interface';
   styleUrls: ['./admin-post-page.component.css']
 })
 export class AdminPostPageComponent {
-  cityList: any;
-  speciesList: any;
+  cityList!: city[];
+  speciesList!: species[];
   searchingOption = 'all'; //看是否有點選特定查詢
   petList: PetFormModel[] = [];
   selectedPetId = 0;
+  nowPage = 0;
+  totalAnimals = 0;
+  hidePaginator = false;
 
   constructor(private service: AdoptService, public dialog: MatDialog) { }
 
@@ -28,32 +33,32 @@ export class AdminPostPageComponent {
     this.service.showAllSpecies().subscribe(response => {
       this.speciesList = response.data;
     });
+
     //show all pets
-    //看要怎樣傳入id，可能登入之後做查詢存在service之後方便使用
-    this.service.showPetInfo().subscribe(response => {
-      console.log(response.response), this.petList = response.response
+    this.service.showPetInfo(this.nowPage).subscribe(response => {
+      this.petList = response.response;
+      this.totalAnimals = response.totalCount;
     });
   }
 
   selectPet(pet: PetFormModel[]) {
     this.selectedPetId = pet[0].id!;
-    console.log(pet[0]);
   }
 
   search() {
     let searchInput = (document.getElementById('searchInput') as HTMLInputElement).valueAsNumber;
-    console.log(searchInput);
+    this.hidePaginator = false;
+    //都沒輸入也查全部
     if (Number.isNaN(searchInput)) {
-      //都沒輸入也查全部
-      this.service.showPetInfo().subscribe(response => {
-        console.log(response.response);
-        this.petList = response.response
+      this.service.showPetInfo(this.nowPage).subscribe(response => {
+        this.petList = response.response;
+        this.totalAnimals = response.totalCount;
       });
     }
+    //以animalId查詢
     else if (this.searchingOption === 'byPetId') {
-      //以animalId查詢
       this.service.queryPetByPetId(searchInput).subscribe(response => {
-        console.log(response.response);
+        this.hidePaginator = true;
         console.log(response);
         this.petList = response.response;
         if (response.response === undefined) {
@@ -70,7 +75,7 @@ export class AdminPostPageComponent {
     } else if (this.searchingOption === 'byUserId') {
       //以userId查詢
       this.service.showPetGivingRecord(searchInput).subscribe(response => {
-        console.log(response.response);
+        this.hidePaginator = true;
         console.log(response);
         this.petList = response.response;
         if (response.response === undefined) {
@@ -89,8 +94,6 @@ export class AdminPostPageComponent {
 
   post() {
     //抓this.selectedPetId去更改postStatus
-    //目前改不了，但swagger可以
-    console.log(this.selectedPetId);
     this.service.updatePostStatus(this.selectedPetId, 'Y').subscribe(response => {
       console.log(response);
       if (response.statusCode === '0000') {
@@ -108,7 +111,6 @@ export class AdminPostPageComponent {
 
   cancelPosting() {
     this.service.updatePostStatus(this.selectedPetId, 'N').subscribe(response => {
-      console.log(response);
       if (response.statusCode === '0000') {
         this.ngOnInit();
         this.dialog.open(DialogComponent, {
@@ -120,5 +122,14 @@ export class AdminPostPageComponent {
         });
       }
     })
+  }
+
+  // 換頁
+  onPageChange(event: PageEvent) {
+    this.nowPage = event.pageIndex
+    this.service.showPetInfo(this.nowPage).subscribe(response => {
+      this.petList = response.response;
+      this.totalAnimals = response.totalCount;
+    });
   }
 }

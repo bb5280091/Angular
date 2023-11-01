@@ -31,6 +31,7 @@ export class DetailPageComponent implements OnInit {
   stompClient!: Stomp.Client;
   displayAnimals!: animal;
   animalId!: number;
+
   messages: DiscussionMessage[] = [];
   message: string = '';
   myId = Number(localStorage.getItem('userId'));
@@ -94,36 +95,32 @@ export class DetailPageComponent implements OnInit {
     console.log('到這一步');
     console.log(this.stompClient);
     this.stompClient.connect({}, () => {
-      this.stompClient.subscribe('/topic/public', (message) => {
+      this.stompClient.subscribe('/topic/discuss/' + this.animalId, (message) => {//subsribe to the public topic
         if (message.body) {
           this.messages.push(JSON.parse(message.body));
         }
       });
     });
   }
+
   onSubscription() {
     if (localStorage.getItem('userId')) {
-      this.adoptionService
-        .UserSubscription(Number(localStorage.getItem('userId')), this.animalId)
-        .subscribe((res) => {
-          console.log(res);
-          if (res.statusCode === '0000') {
-            console.log('訂閱成功');
-            this.dialog.open(DialogComponent, {
-              data: { dialogMode: 'addSubscriptionSuccess' },
-            });
-          } else {
-            console.log('訂閱失敗');
-            this.dialog.open(DialogComponent, {
-              data: { dialogMode: 'addSubscriptionFail' },
-            });
-          }
-        });
-    } else {
-      this.dialog.open(DialogComponent, {
-        data: { dialogMode: 'loginDialog' },
-      });
+      this.adoptionService.UserSubscription(Number(localStorage.getItem('userId')), this.animalId).subscribe((res) => {
+        console.log(res)
+        if (res.statusCode === '0000') {
+          console.log("訂閱成功")
+          this.dialog.open(DialogComponent, {
+            data: { dialogMode: 'addSubscriptionSuccess' }
+          })
+        } else {
+          console.log("訂閱失敗")
+          this.dialog.open(DialogComponent, {
+            data: { dialogMode: 'addSubscriptionFail' }
+          })
+        }
+      })
     }
+
   }
 
   sendDiscussionMessage() {

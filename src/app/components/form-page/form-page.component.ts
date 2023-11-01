@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { city, species } from '../../adpotion-model';
+import { AdoptService } from '../../service/adopt.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { PetFormModel } from '../interfaces/pet.interface';
-import { AdoptService } from '../../service/adopt.service';
 
 @Component({
   selector: 'app-form-page',
@@ -13,10 +14,10 @@ import { AdoptService } from '../../service/adopt.service';
 export class FormPageComponent {
 
   constructor(private formBuilder: FormBuilder, private service: AdoptService, public dialog: MatDialog) { }
-  cityList: any;
-  speciesList: any;
+  cityList!: city[];
+  speciesList!: species[];
   createPetList: PetFormModel[] = [];
-  selectedFile!: string|undefined;
+  selectedFile!: string | undefined;
 
   form = this.formBuilder.group({
     name: ['', [Validators.required, Validators.pattern(/[\S]/)]],
@@ -38,9 +39,7 @@ export class FormPageComponent {
 
   onSubmit() {
     console.log(this.form);
-    console.log(this.form.value);
     console.log(this.selectedFile);
-
     //輸入錯誤
     if (this.form.invalid) {
       this.dialog.open(DialogComponent, {
@@ -71,11 +70,10 @@ export class FormPageComponent {
         conditionParentalPermission: formData.parentalPermission ? "Y" : "N",
         userId: Number(localStorage.getItem('userId'))
       };
-      console.log( Number(localStorage.getItem('userId')));
+      console.log(Number(localStorage.getItem('userId')));
       console.log(petData);
       this.createPetList.push(petData);
       this.service.createPetInfo(this.createPetList).subscribe(response => {
-        console.log(response);
         if (response.statusCode === '0000') {
           this.dialog.open(DialogComponent, {
             //新增成功dialog
@@ -128,9 +126,6 @@ export class FormPageComponent {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.selectedFile = await this.getBase64(file).then();
-
-      console.log(this.selectedFile);
-      console.log(this.selectedFile!.split(",")[1]);
       this.selectedFile = this.selectedFile!.split(",")[1];//將前綴(blob:)拿掉
       console.log(this.selectedFile);
     }

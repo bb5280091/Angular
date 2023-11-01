@@ -106,10 +106,10 @@ export class AdoptService {
     return this.http.delete<any>(this.url + "/adoptions", { params: { id: id } });
   }
 
-  //查詢寵物資訊
-  showPetInfo() {
-    return this.http.get<any>(this.url + "/adoptions");
-  }
+ //查詢寵物資訊
+ showPetInfo(page:number) {
+  return this.http.get<any>(this.url + "/adoptions", { params: { page: page } });
+}
 
   //查詢寵物資訊by animalId
   queryPetByPetId(animalId: number) {

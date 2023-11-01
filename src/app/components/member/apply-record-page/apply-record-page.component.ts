@@ -9,22 +9,40 @@ import { AdoptionService } from 'src/app/service/adoption.service';
   styleUrls: ['./apply-record-page.component.css']
 })
 export class ApplyRecordPageComponent implements OnInit {
+<<<<<<< HEAD
   constructor(private adoptionService: AdoptionService, private router: Router) { }
   dispalyAnimal!: MinimalistAnimal[];
   ngOnInit(): void {
     this.loadData()
+=======
+  constructor(private adoptionService: AdoptionService,private router: Router) { }
+  dispalyAnimal!: MinimalistAnimal[];
+  ngOnInit(): void {
+    this.adoptionService.onGetUserSubscription(Number(localStorage.getItem('userId'))).subscribe((res) => {
+      if ('response' in res) {
+        this.dispalyAnimal = res.response;
+      } else {
+        console.log('查無資料')
+      }
+
+    })
+>>>>>>> laura
   }
   unsubscription(id: number) {
     this.adoptionService.UserUnsubscription(Number(localStorage.getItem('userId')), id).subscribe((res) => {
       if (res.statusCode === '0000') {
         console.log('刪除成功');
+<<<<<<< HEAD
         this.loadData()
+=======
+>>>>>>> laura
       } else {
         console.log('刪除失敗');
       }
 
     })
   }
+<<<<<<< HEAD
   loadData() {
     this.adoptionService.onGetUserSubscription(Number(localStorage.getItem('userId'))).subscribe((res) => {
       if ('response' in res) {
@@ -37,6 +55,9 @@ export class ApplyRecordPageComponent implements OnInit {
   }
 
   navigateToYourPath(id: number) {
+=======
+  navigateToYourPath(id :number) {
+>>>>>>> laura
     this.router.navigate(['/detail'], { queryParams: { animalId: id } });
   }
 
