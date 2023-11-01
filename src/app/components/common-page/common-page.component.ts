@@ -50,28 +50,15 @@ export class CommonPageComponent implements OnInit {
   }
   //登出
   onLogout() {
-<<<<<<< HEAD
     this.router.navigate(['/']);
-
-=======
->>>>>>> laura
     localStorage.setItem('jwtToken','');
     localStorage.setItem('mail', '');
     localStorage.setItem('role', '');
     localStorage.setItem('userId', '');
     localStorage.setItem('name', '');
-<<<<<<< HEAD
-
-
     this.dialog.open(DialogComponent, {
       data: { dialogMode: 'logoutSuccessDialog' }
     });
-
-=======
-    this.dialog.open(DialogComponent, {
-      data: { dialogMode: 'logoutSuccessDialog' }
-    });
->>>>>>> laura
   }
 
 }
