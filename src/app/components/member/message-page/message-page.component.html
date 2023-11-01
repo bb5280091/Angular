@@ -3,14 +3,21 @@
   <div class="Line"></div>
   <table>
     <tbody>
+      <div class="tableBody" (click)="messageClicked(5)" *ngIf="this.agentMessage===0">
+        <tr>
+          <td class="name">客服專員</td>
+          <td class="message">點擊與客服專員尋求幫助</td>
+          <td class="date"></td>
+        </tr>
+      </div>
       <!-- 要遍歷 -->
       <!-- 點tr會跳到他們的聊天窗 -->
       <div class="tableBody" *ngFor="let message of this.messageList;"
         (click)="messageClicked(this.userId==message.senderId?message.receiverId:message.senderId)">
         <tr>
-            <td class="name">{{message.name}}</td>
-            <td class="message">{{message.content}}</td>
-            <td class="date">{{message.time|date:'yyyy/M/d'}}</td>
+          <td class="name">{{message.name}}</td>
+          <td class="message">{{message.content}}</td>
+          <td class="date">{{message.time|date:'yyyy/M/d'}}</td>
         </tr>
       </div>
     </tbody>

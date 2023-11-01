@@ -11,6 +11,17 @@
     </div>
   </ng-container>
 
+  <!-- 私訊錯誤 -->
+  <ng-container *ngSwitchCase="'chatFailedDialog'">
+    <p mat-dialog-title>Fail</p>
+    <div mat-dialog-content>
+      <span>不可私訊自己!</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
+
   <!-- 登入成功 -->
   <ng-container *ngSwitchCase="'loginSuccessDialog'">
     <p mat-dialog-title>Success</p>
@@ -21,6 +32,18 @@
       <button mat-button [mat-dialog-close]="">關閉</button>
     </div>
   </ng-container>
+
+    <!-- 帳號被鎖 -->
+    <ng-container *ngSwitchCase="'accountDisable'">
+      <p mat-dialog-title>Warning</p>
+      <div mat-dialog-content>
+        <span>帳號被鎖，有任何疑問請私訊管理員</span>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="">關閉</button>
+      </div>
+    </ng-container>
+
 
    <!-- 成功登出 -->
    <ng-container *ngSwitchCase="'logoutSuccessDialog'">
@@ -41,7 +64,9 @@
       </div>
       <div mat-dialog-actions>
         <button mat-button [mat-dialog-close]="">否</button>
+
         <button mat-button (click)="navigateToLogin()">是</button>
+
       </div>
     </ng-container>
 

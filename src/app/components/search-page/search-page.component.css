@@ -96,7 +96,6 @@ select {
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
 }
 
 .Card {
@@ -155,7 +154,7 @@ select {
 .PetType,
 .Location {
   color: #1E1E1E;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   word-wrap: break-word;
 }

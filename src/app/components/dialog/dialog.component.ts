@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -22,6 +23,7 @@ export class DialogComponent {
     this.router.navigate(['/login']).then(() => {
       this.dialogRef.close();
     });
+
   }
 }
 

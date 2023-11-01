@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import {
   DecodedToken,
   MinimalistAnimalList,
@@ -23,7 +24,9 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root',
 })
 export class AdoptionService {
-  constructor(private http: HttpClient, private router: Router) {}
+
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   /**
    * 搜尋前三名點擊的寵物資訊
@@ -50,10 +53,10 @@ export class AdoptionService {
    * 查詢全部寵物資料
    * @returns animals
    */
-  onQueryAllAnimal() {
+  onQueryAllAnimal(page: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const requestUrl = 'http://localhost:8080/adoptions';
-    return this.http.get<animals>(requestUrl, { headers });
+    return this.http.get<animals>(requestUrl, { params: { page: page } });
   }
 
   /**
@@ -73,7 +76,7 @@ export class AdoptionService {
    * @param speciesId 寵物類別id
    * @returns animals
    */
-  onQueryConditionalAnimal(cityId?: string, sex?: string, speciesId?: string) {
+  onQueryConditionalAnimal(cityId?: string, sex?: string, speciesId?: string, page?: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let queryParams = [];
     if (cityId) {
@@ -91,6 +94,7 @@ export class AdoptionService {
     } else {
       queryParams.push(`speciesId`);
     }
+    queryParams.push(`page=${page}`);
 
     const queryString = queryParams.join('&');
     const requestUrl = `http://localhost:8080/adoptions?${queryString}`;
@@ -113,6 +117,7 @@ export class AdoptionService {
    */
   onQueryAllSpecies() {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
     const requestUrl = 'http://localhost:8080/comment/species';
     return this.http.get<speciesData>(requestUrl, { headers });
   }
@@ -158,7 +163,7 @@ export class AdoptionService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const requestUrl = `http://localhost:8080/users/subscription?userId=${userId}`;
     type ApiResponse = MinimalistAnimalList | ReturnStatus;
-    return this.http.get< ApiResponse>(requestUrl, { headers });
+    return this.http.get<ApiResponse>(requestUrl, { headers });
   }
   UserSubscription(userId: number, id: number) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -184,6 +189,7 @@ export class AdoptionService {
 
 
   }
+
   /**
    * 若任合需要登入的尚未使用的服務則使用該函數
    */
@@ -212,3 +218,4 @@ export class AdoptionService {
     }
   }
 }
+

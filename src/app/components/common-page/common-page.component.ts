@@ -8,6 +8,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   templateUrl: './common-page.component.html',
   styleUrls: ['./common-page.component.css']
 })
+
 export class CommonPageComponent implements OnInit {
   constructor(private router: Router, private dialog: MatDialog) { }
   lastAttemptedUrl: string | null = null;
@@ -49,13 +50,19 @@ export class CommonPageComponent implements OnInit {
   }
   //登出
   onLogout() {
+    this.router.navigate(['/']);
+
     localStorage.setItem('jwtToken','');
     localStorage.setItem('mail', '');
     localStorage.setItem('role', '');
     localStorage.setItem('userId', '');
     localStorage.setItem('name', '');
+
+
     this.dialog.open(DialogComponent, {
       data: { dialogMode: 'logoutSuccessDialog' }
     });
+
   }
+
 }

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { AdoptionService } from 'src/app/service/adoption.service';
-import { animal, city, simpleAnimal, species } from 'src/app/adpotion-model';
+import { AdoptionService } from '../../service/adoption.service';
+import { animal, city, species } from '../../adpotion-model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-page',
@@ -11,9 +12,12 @@ import { animal, city, simpleAnimal, species } from 'src/app/adpotion-model';
   styleUrls: ['./search-page.component.css']
 })
 export class SearchPageComponent implements OnInit {
+  totalAnimals = 0;
   displayAnimals!: animal[];
   cityOptions!: city[];
   speciesOptions!: species[];
+  nowPage = 0;
+
   constructor(private adoptionService: AdoptionService, private fb: FormBuilder, private router: Router) { }
   /**
    * 初始畫面加載
@@ -23,10 +27,12 @@ export class SearchPageComponent implements OnInit {
    */
   ngOnInit(): void {
     forkJoin({
-      animals: this.adoptionService.onQueryAllAnimal(),
+      animals: this.adoptionService.onQueryAllAnimal(this.nowPage),
       cities: this.adoptionService.onQueryAllCity(),
       species: this.adoptionService.onQueryAllSpecies()
     }).subscribe((result) => {
+      console.log(result.animals);
+      this.totalAnimals = result.animals.totalCount;
       this.displayAnimals = result.animals.response;
       console.log(this.displayAnimals)
       this.cityOptions = result.cities.data;
@@ -48,7 +54,8 @@ export class SearchPageComponent implements OnInit {
     console.log('觸發')
     const values = this.searchForm.value;
     if (values.cityId === '' && values.sex === '' && values.speciesId === '') {
-      this.adoptionService.onQueryAllAnimal().subscribe((res) => {
+      this.adoptionService.onQueryAllAnimal(this.nowPage).subscribe((res) => {
+        this.totalAnimals = res.totalCount
         this.displayAnimals = res.response;
       })
       return;
@@ -57,8 +64,9 @@ export class SearchPageComponent implements OnInit {
     const sex = values.sex || '';
     const speciesId = values.speciesId || '';
     console.log(cityId, sex, speciesId)
-    this.adoptionService.onQueryConditionalAnimal(cityId, sex, speciesId).subscribe((res) => {
+    this.adoptionService.onQueryConditionalAnimal(cityId, sex, speciesId, this.nowPage).subscribe((res) => {
       console.log(res);
+      this.totalAnimals = res.totalCount
       this.displayAnimals = res.response;
     })
   }
@@ -71,6 +79,16 @@ export class SearchPageComponent implements OnInit {
       console.log(res.status)
     }
     )
-    this.router.navigate(['/detail'],{ queryParams: {animalId:animalId}});
+    this.router.navigate(['/detail'], { queryParams: { animalId: animalId } });
+  }
+
+  // 換頁
+  onPageChange(event: PageEvent) {
+    console.log(event.pageIndex);
+    this.nowPage = event.pageIndex
+    this.adoptionService.onQueryAllAnimal(this.nowPage).subscribe(result => {
+      this.displayAnimals = result.response;
+    });
+
   }
 }

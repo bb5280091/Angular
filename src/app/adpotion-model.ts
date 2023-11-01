@@ -41,6 +41,8 @@ export interface animal {
   introduction: string;
   photo: string;
   userId: number;
+  pageNumber: number;
+  publishDate : string ;
 }
 
 // species
@@ -56,35 +58,35 @@ export interface city {
 }
 
 //Users
-export interface Users{
-users : RespUser[] ;
+export interface Users {
+  users: RespUser[];
 }
 
 
 //User
-export interface RespUser{
-  userId : number ;
-  name : string ;
-  mobile : string ;
-  googleAccount : string ;
-  status : string
+export interface RespUser {
+  userId: number;
+  name: string;
+  mobile: string;
+  googleAccount: string;
+  status: string
 }
 
 //ReturmCode
-export interface ReturnStatus{
-  statusCode:string
-  status :string
+export interface ReturnStatus {
+  statusCode: string
+  status: string
 }
 
 //MinimalistAnimal
-export interface MinimalistAnimal{
-  id : number ;
-  name : string ;
+export interface MinimalistAnimal {
+  id: number;
+  name: string;
 }
 //Subscription
-export interface SubscriptionDetail{
-userId : number ;
-id :number ;
+export interface SubscriptionDetail {
+  userId: number;
+  id: number;
 
 }
 
@@ -117,26 +119,30 @@ export interface cityData {
  */
 export interface animals {
   response: animal[];
+  pageNumber: number;
+  pageSize: number;
+  totalCount: number;
+  totalPage: number;
 }
 
-export interface MinimalistAnimalList{
+export interface MinimalistAnimalList {
 
- response : MinimalistAnimal[] ;
+  response: MinimalistAnimal[];
 }
 
 //Adimin
 
-export interface UserStatus{
-status : string
+export interface UserStatus {
+  status: string
 }
 
-export interface OneUser{
-  user :  RespUser
- }
+export interface OneUser {
+  user: RespUser
+}
 
 //JWT自訂
 
-export interface User{
+export interface User {
   sub: string;
   role: string;
   exp: number;
