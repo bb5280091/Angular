@@ -33,26 +33,19 @@
     </div>
   </ng-container>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    <!-- 帳號被鎖 -->
-    <ng-container *ngSwitchCase="'accountDisable'">
-      <p mat-dialog-title>Warning</p>
-      <div mat-dialog-content>
-        <span>帳號被鎖，有任何疑問請私訊管理員</span>
-      </div>
-      <div mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="">關閉</button>
-      </div>
-    </ng-container>
+  <!-- 帳號被鎖 -->
+  <ng-container *ngSwitchCase="'accountDisable'">
+    <p mat-dialog-title>Warning</p>
+    <div mat-dialog-content>
+      <span>帳號被鎖，有任何疑問請私訊管理員</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
 
->>>>>>> origin/sebrina
-=======
->>>>>>> laura
-
-   <!-- 成功登出 -->
-   <ng-container *ngSwitchCase="'logoutSuccessDialog'">
+  <!-- 成功登出 -->
+  <ng-container *ngSwitchCase="'logoutSuccessDialog'">
     <p mat-dialog-title>Success</p>
     <div mat-dialog-content>
       <span>登出成功</span>
@@ -62,19 +55,19 @@
     </div>
   </ng-container>
 
-    <!-- 未登入跳窗 -->
-    <ng-container *ngSwitchCase="'loginDialog'">
-      <h1 mat-dialog-title>您尚未登入，是否幫您轉向登入頁面?</h1>
-      <div mat-dialog-content>
-        <p>點選是後立即導向</p>
-      </div>
-      <div mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="">否</button>
+  <!-- 未登入跳窗 -->
+  <ng-container *ngSwitchCase="'loginDialog'">
+    <h1 mat-dialog-title>您尚未登入，是否幫您轉向登入頁面?</h1>
+    <div mat-dialog-content>
+      <p>點選是後立即導向</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">否</button>
 
-        <button mat-button (click)="navigateToLogin()">是</button>
+      <button mat-button (click)="navigateToLogin()">是</button>
 
-      </div>
-    </ng-container>
+    </div>
+  </ng-container>
 
   <!-- 若為新增成功 -->
   <ng-container *ngSwitchCase="'createSuccessDialog'">
@@ -184,14 +177,14 @@
       <button mat-button [mat-dialog-close]="">關閉</button>
     </div>
   </ng-container>
-    <!--加入收藏失敗 -->
-    <ng-container *ngSwitchCase="'addSubscriptionFail'">
-      <p mat-dialog-title>Fail</p>
-      <div mat-dialog-content>
-        <span>已經加入收藏過了喔!喜歡趕快帶回家</span>
-      </div>
-      <div mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="">關閉</button>
-      </div>
-    </ng-container>
+  <!--加入收藏失敗 -->
+  <ng-container *ngSwitchCase="'addSubscriptionFail'">
+    <p mat-dialog-title>Fail</p>
+    <div mat-dialog-content>
+      <span>已經加入收藏過了喔!喜歡趕快帶回家</span>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="">關閉</button>
+    </div>
+  </ng-container>
 </div>
